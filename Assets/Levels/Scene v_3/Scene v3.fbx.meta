@@ -1,0 +1,237 @@
+fileFormatVersion: 2
+guid: a4f5fd312439fb64692bd11f3e93bf28
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bridge_mat
+    second: {fileID: 2100000, guid: 93faebf2545716a40915a15278cdea4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Castle_mat
+    second: {fileID: 2100000, guid: bc1931e577f249940ae96bb458d2b931, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_10_mat
+    second: {fileID: 2100000, guid: 0c4eec860f7cfe948b1e41a2e6617be4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_11_mat
+    second: {fileID: 2100000, guid: 66128713ffd73cf41b6a9888d3f7cff9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_12_mat
+    second: {fileID: 2100000, guid: ff36988d480d0ec4ab527a79948bdc57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_13_mat
+    second: {fileID: 2100000, guid: 1a70f39a9de7c74489e2625560de152e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_14_mat
+    second: {fileID: 2100000, guid: a9a8037e7f3505b43bae80efa577a7d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_15_mat
+    second: {fileID: 2100000, guid: c84ffb371764d4e409ba83ffa13f05e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_17_mat
+    second: {fileID: 2100000, guid: 2925cf64363dca94786f73b3eb81fd98, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_18_mat
+    second: {fileID: 2100000, guid: 5e88bacc8fce8984eaca86d2b15097b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_19_mat
+    second: {fileID: 2100000, guid: b1c9f3107f309834b925b91e1a771669, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_1_mat
+    second: {fileID: 2100000, guid: 97f8b2729e3941c42b9c5fea8a1094b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_20_mat
+    second: {fileID: 2100000, guid: da1608392f6478e44bf4e3b6bd9b5347, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_21_mat
+    second: {fileID: 2100000, guid: cca67f6197fe6904593d01670bdd19cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_2_mat
+    second: {fileID: 2100000, guid: 8c2f6bd49a914c84d86768ff46970a2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_3_mat
+    second: {fileID: 2100000, guid: c612d56b64602ac42b952d2e3ce9708c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_4_mat
+    second: {fileID: 2100000, guid: ff1538d0fc9def64db4aa45f940bf147, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_5_mat
+    second: {fileID: 2100000, guid: 7ed25387ac350104ba3f7ebdedf133a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_7_mat
+    second: {fileID: 2100000, guid: 6051c807d4714ae459d70882a6d32972, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_8_mat
+    second: {fileID: 2100000, guid: 0cba96cdbc048b244bda0b9a3d020325, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_9_mat
+    second: {fileID: 2100000, guid: c5d00f882ff0ea94aa37e282467bab3f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_Sequirity_mat
+    second: {fileID: 2100000, guid: afc34981070798a478064865d71b01ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: House_16_mat
+    second: {fileID: 2100000, guid: f94b06dc8530f2142ba926ff08f3b197, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Props_mat
+    second: {fileID: 2100000, guid: 13e2e5d3b001f5d41af95abf7bbec146, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Road_mat
+    second: {fileID: 2100000, guid: 23464b6bb6425e546bf8438da0e3ee7e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SM_House_mat
+    second: {fileID: 2100000, guid: 15a88294f774a6b428f2059948dfdec9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Second_bridge_mat
+    second: {fileID: 2100000, guid: 61d6b8517ca7b4741b38c9176d1c9cea, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

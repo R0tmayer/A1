@@ -1,0 +1,247 @@
+fileFormatVersion: 2
+guid: 4ad72f10e531e6b4ab26947e21f12a44
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Child_Place_mat
+    second: {fileID: 2100000, guid: a334f3bea3c7a7049a7da94d033df1d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Down1
+    second: {fileID: 2100000, guid: 4d904b5fc80dcee49ab3c426ba51e52f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_CIrcus_mat
+    second: {fileID: 2100000, guid: b99325c7d302e9442ab74feab87fc741, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Env_AngarHouse_mat
+    second: {fileID: 2100000, guid: 519226da3d773ce4ab420707827f6eea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Env_BankHouse_mat
+    second: {fileID: 2100000, guid: 80949cc9ad3c62540a9616152b6731f3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Env_BarHouse_mat
+    second: {fileID: 2100000, guid: 394811a22b0615546a16ab34b9b85dc0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Env_BarberShop_House_mat
+    second: {fileID: 2100000, guid: ffb5681759ad87c448e04b63f2213d22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Env_Burger_House_mat
+    second: {fileID: 2100000, guid: 004a4e536def2764fbeb1623a9e982bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Env_CaffeHouse_mat
+    second: {fileID: 2100000, guid: 162516c6172491f48b90ffa6c2d0292d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Env_CarRepair_House_mat
+    second: {fileID: 2100000, guid: 8036a28f708f7bb42be15760f63bdaaa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Env_China_House1
+    second: {fileID: 2100000, guid: 83ee0d63c9e15dd4f9b079a1053929e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Env_FoodMarket_mat
+    second: {fileID: 2100000, guid: 715aaef8027a1b9479dcc7c001991895, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Env_Hospiatal_mat
+    second: {fileID: 2100000, guid: 79d1ed164eba4694fb1fd4e8c7d00cec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Env_HotelName_mat
+    second: {fileID: 2100000, guid: 343c154ed5c5b9e42b115cefa39c47a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Env_Office_mat
+    second: {fileID: 2100000, guid: e70ad7a04e478ed4baccc93861101b53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Env_Pizzza_House_mat
+    second: {fileID: 2100000, guid: d3abad33dd6c3284bb523b64980973db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Env_PoliceHouse_mat
+    second: {fileID: 2100000, guid: e6a413135f06f8946b2a17e739d84aad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Env_PubHouse_mat
+    second: {fileID: 2100000, guid: 44a1197a333b4a746807ac9370af5740, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_House_Sequirity_mat
+    second: {fileID: 2100000, guid: 7844b542fb9ce1c41a602138feb0c499, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Kran_mat
+    second: {fileID: 2100000, guid: e9702bd412a456745a385cc802313a52, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Zags_mat
+    second: {fileID: 2100000, guid: ef058421c954d3e45acb7b00a4439545, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: 2956151af391701458715a7cdc85445e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Office_House_mat
+    second: {fileID: 2100000, guid: 7fe480a6bbdc3ce4c9535f320b7eacf6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Oils_Mat
+    second: {fileID: 2100000, guid: 04a4e69f84c5a4e449fc7af0684f4452, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Props_mat
+    second: {fileID: 2100000, guid: dde7291f9818d344db83a71c21c1937c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Reclama_mat
+    second: {fileID: 2100000, guid: caf04720db02f794bab7edee10c0eb4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Road_River_Bridge
+    second: {fileID: 2100000, guid: 464dc99dbc04abe4190375fc25b9764b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_Doors_Balcony
+    second: {fileID: 2100000, guid: 47b46b157f709c64fa09d02022861028, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trees_Decor_mat
+    second: {fileID: 2100000, guid: c0755b583c4fe7545b65b1272495bd7d, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
