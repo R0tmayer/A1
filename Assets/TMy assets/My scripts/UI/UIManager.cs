@@ -23,6 +23,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _leaderboardUI;
     [SerializeField] private GameObject _achievementsUI;
 
+    [Header("Toggle Buttons if Guest")]
+    [SerializeField] private Button _inviteButton;
+    [SerializeField] private Button _leaderboardButton;
+
     private AchievenmentListIngame _achievementListInGame;
     private BlackScreenFade _blackScreenFade;
 
@@ -64,8 +68,13 @@ public class UIManager : MonoBehaviour
 
     public void PlayAsGuest()
     {
+        GuestIdentificator.isGuest = true;
+
         //TODO: Load PlayerPrefs...
         ShowMainMenuScreen();
+
+        _inviteButton.interactable = false;
+        _leaderboardButton.interactable = false;
     }
 
     public void OpenHyperlink()
@@ -75,6 +84,12 @@ public class UIManager : MonoBehaviour
 
     public void ShowLoginScreen()
     {
+        //TODO Set correct saveName
+        SaveManager.LoadData("example");
+        GuestIdentificator.isGuest = false;
+        _inviteButton.interactable = true;
+        _leaderboardButton.interactable = true;
+
         ClearScreen();
         _loginUI.SetActive(true);
     }
