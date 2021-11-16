@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -22,6 +24,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _achievementsUI;
 
     private AchievenmentListIngame _achievementListInGame;
+    private BlackScreenFade _blackScreenFade;
 
     private void Awake()
     {
@@ -39,6 +42,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         _achievementListInGame = FindObjectOfType<AchievenmentListIngame>();
+        _blackScreenFade = FindObjectOfType<BlackScreenFade>();
     }
 
     private void ClearScreen()
@@ -62,6 +66,11 @@ public class UIManager : MonoBehaviour
     {
         //TODO: Load PlayerPrefs...
         ShowMainMenuScreen();
+    }
+
+    public void OpenHyperlink()
+    {
+        Application.OpenURL("http://unity3d.com/");
     }
 
     public void ShowLoginScreen()
@@ -123,18 +132,16 @@ public class UIManager : MonoBehaviour
     {
         Application.Quit();
     }
-    public void LoadFirstMap()
+
+    private IEnumerator LoadSceneCoroutine(string sceneName)
     {
-        SceneManager.LoadScene(StaticSceneNames.GAME_SCENE);
+        _blackScreenFade.FadeIn();
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(sceneName);
     }
-    
-    public void LoadSecondMap()
+
+    public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(StaticSceneNames.GAME_SCENE);
-    }
-    
-    public void LoadThirdMap()
-    {
-        SceneManager.LoadScene(StaticSceneNames.GAME_SCENE);
+        StartCoroutine(LoadSceneCoroutine(sceneName));
     }
 }

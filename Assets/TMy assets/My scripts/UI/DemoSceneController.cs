@@ -23,7 +23,6 @@ public class DemoSceneController : MonoBehaviour
     private void Awake()
     {
         SetCurrentCanvas(_mainGameCanvas);
-        Time.timeScale = 0;
     }
 
     private void OnEnable()
