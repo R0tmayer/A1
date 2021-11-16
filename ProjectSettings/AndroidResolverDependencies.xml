@@ -15,6 +15,8 @@
     <package>com.google.firebase:firebase-auth:21.0.1</package>
     <package>com.google.firebase:firebase-auth-unity:8.4.0</package>
     <package>com.google.firebase:firebase-common:20.0.0</package>
+    <package>com.google.firebase:firebase-database:20.0.0</package>
+    <package>com.google.firebase:firebase-database-unity:8.4.0</package>
     <package>com.parse.bolts:bolts-android:1.4.0</package>
   </packages>
   <files>
@@ -78,12 +80,16 @@
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-tasks-17.2.1.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-analytics-19.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-annotations-16.0.0.jar</file>
+    <file>Assets/Plugins/Android/com.google.firebase.firebase-appcheck-interop-16.0.0-beta01.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-app-unity-8.4.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-auth-21.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-auth-interop-20.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-auth-unity-8.4.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-common-20.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-components-17.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.firebase.firebase-database-20.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.firebase.firebase-database-collection-18.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.firebase.firebase-database-unity-8.4.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-installations-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-installations-interop-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-measurement-connector-19.0.0.aar</file>
@@ -102,10 +108,8 @@
     <setting name="bundleId" value="com.DefaultCompany.A1" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
-    <setting name="gradlePropertiesTemplateEnabled" value="False" />
     <setting name="gradleTemplateEnabled" value="False" />
     <setting name="installAndroidPackages" value="True" />
-    <setting name="localMavenRepoDir" value="Assets/GeneratedLocalRepo" />
     <setting name="packageDir" value="Assets/Plugins/Android" />
     <setting name="patchAndroidManifest" value="True" />
     <setting name="patchMainTemplateGradle" value="True" />
