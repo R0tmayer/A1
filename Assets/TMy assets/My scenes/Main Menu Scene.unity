@@ -13485,6 +13485,8 @@ MonoBehaviour:
   _userDataUI: {fileID: 940945945}
   _leaderboardUI: {fileID: 1029416609}
   _achievementsUI: {fileID: 668273959}
+  _inviteButton: {fileID: 8305133164331042281}
+  _leaderboardButton: {fileID: 494458540}
 --- !u!4 &2056093199
 Transform:
   m_ObjectHideFlags: 0
