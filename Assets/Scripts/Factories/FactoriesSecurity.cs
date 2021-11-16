@@ -121,7 +121,8 @@ public class FactoriesSecurity : MonoBehaviour
         if (MainPlayer.Instance.Money - price >= 0)
         {
             MainPlayer.Instance.Money = -price;
-           // Debug.Log("Приобрели "+name);
+            AchivemntController.Instance.AchFirstUpdate();
+            // Debug.Log("Приобрели "+name);
             return true;
         }
         else

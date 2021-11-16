@@ -18,6 +18,5 @@ public class TargetsManager : SceneSingleton<TargetsManager>
     public bool isBuildMode ;
 
     public int countUpdate ;
-
-
+    public int countProtect ;
 }

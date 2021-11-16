@@ -157,6 +157,30 @@ public class House : MonoBehaviour
 
 
     // ### Updates
+    public void AchChecker() {
+        if (upg_zabor_or_signalization && upg_camera)
+        {
+
+            if ((TargetsManager.Instance.countUpdate == TargetsManager.Instance.houses.Count))
+            {
+                foreach (var item in TargetsManager.Instance.houses)
+                {
+                    if (!item.upg_zabor_or_signalization || !item._checkUpdate)
+                    {
+                        break;
+                    }
+                    else {
+                        AchivemntController.Instance.AchUpdate();
+                        return;
+                    }
+                }
+
+                
+            }
+
+            AchivemntController.Instance.AchAddUpdateHome();
+        }
+    }
 
     private bool UpgradeTime() {
         int price = 50;
@@ -167,6 +191,9 @@ public class House : MonoBehaviour
 
             upg_zabor_or_signalization = true;
             MaxPropert = 100;
+            AchivemntController.Instance.AchFirstUpdate();
+
+            AchChecker();
 
             if (_isAHouse)
             {
@@ -180,6 +207,7 @@ public class House : MonoBehaviour
                 Debug.Log("Установили сигнализацию");
                 return true;
             }
+
         }
         else {
 
@@ -211,6 +239,9 @@ public class House : MonoBehaviour
             MainPlayer.Instance.Money = -price;
             upg_camera = true;
             Debug.Log("Установили камеру");
+            AchivemntController.Instance.AchFirstUpdate();
+            AchChecker();
+
             return true;
         }
         else
@@ -278,6 +309,11 @@ public class House : MonoBehaviour
        /* MainPlayer.Instance.HouseState = "Ограбление предотвращено =)";*/
         MainPlayer.Instance.Raiting = 50;
         MainPlayer.Instance.Money = 50;
+        TargetsManager.Instance.countUpdate++;
+        if (TargetsManager.Instance.countUpdate >= 20)
+        {
+            AchivemntController.Instance.AchProtectedAbsolute();
+        }
         //TargetsManager.Instance.factoriesSecurity.carsCount++;
     }
 
@@ -288,6 +324,7 @@ public class House : MonoBehaviour
   /*      MainPlayer.Instance.HouseState = "ОГРАБИЛИ =(";*/
         MainPlayer.Instance.Raiting = upg_camera ? -25 : -50;
         MainPlayer.Instance.Money = upg_camera ? -25 : -50;
+        TargetsManager.Instance.countUpdate = 0;
         //Тут считаем очки, прибавляем или отнимаем и сколько
     }
 
@@ -298,6 +335,7 @@ public class House : MonoBehaviour
         ViewHousStatusParticle(failParticle);
         EndRobbery();
         MainPlayer.Instance.Raiting = -50;
+        TargetsManager.Instance.countUpdate = 0;
     }
 
     public void FakeSignalizationSucces()
@@ -307,6 +345,11 @@ public class House : MonoBehaviour
         EndRobbery();
         MainPlayer.Instance.Raiting = 25;
         MainPlayer.Instance.Money = 25;
+        TargetsManager.Instance.countUpdate++;
+        if (TargetsManager.Instance.countUpdate >= 20)
+        {
+            AchivemntController.Instance.AchProtectedAbsolute();
+        }
     }
 
     public void ViewHousStatusParticle(GameObject item) {

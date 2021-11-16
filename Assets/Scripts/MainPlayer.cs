@@ -57,6 +57,10 @@ public class MainPlayer : GameSingleton<MainPlayer>
                 return;
             }
             raiting += value;
+            if (raiting >= 10000)
+            {
+                AchivemntController.Instance.AchGameScore();
+            }
             ExpValue.text = "" + raiting;
         }
     }

@@ -63,7 +63,7 @@ public class SecurityUpdater : MonoBehaviour
             if (item.upg_camera || item.upg_zabor_or_signalization)
             {
                 TargetsManager.Instance.countUpdate++;
-            }
+            }      
         }
 
         _house.text = TargetsManager.Instance.countUpdate.ToString();

@@ -11,6 +11,13 @@ public class ExampleScript : MonoBehaviour
     {
         AchievementManager.instance.AddAchievementProgress(Name, 1);
     }
+
+    [ContextMenu("sd")]
+    public void testsd() {
+        string str = "ProgressionExample";
+        Add5(str);
+    }
+
     public void Add5(string Name)
     {
         AchievementManager.instance.AddAchievementProgress(Name, 5);

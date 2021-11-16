@@ -235,7 +235,6 @@ public class SecurityController : MonoBehaviour
 
         if (bestRoad)
         {
-            
             DrawPath();
         }
         
