@@ -9534,7 +9534,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 143520013}
         m_TargetAssemblyTypeName: 
-        m_MethodName: LoginButton
+        m_MethodName: LoginWithEmailPassword
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14278,7 +14278,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 143520013}
         m_TargetAssemblyTypeName: 
-        m_MethodName: RegisterButton
+        m_MethodName: RegisterNewUser
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
