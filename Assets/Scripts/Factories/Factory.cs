@@ -12,6 +12,8 @@ public class Factory : MonoBehaviour
     [SerializeField] private float minDistance = 10;
     private int _lastSpawnPoint = -1;
 
+    [SerializeField] [Range(-1, 2)] private int _spawnOnly = -1;
+
     private int GetRandomIndex(int countItems) {
         if (countItems <= 0) return 0;
         return Random.Range(0, countItems);
@@ -32,6 +34,7 @@ public class Factory : MonoBehaviour
     public void SpawnRubbers() {
 /*        int carsLeft = GameManager.Instance.carsCount - GameManager.Instance.currentCarsCount;
 */
+
         int num = Random.Range(1, _maxSpawnAtATime + 1);
         /*
                 if (*//*carsLeft < num ||*//* TargetsManager.Instance.robberTargetPositions.Count < num || TargetsManager.Instance.robberSpawnPositions.Count < num ) 
@@ -75,12 +78,30 @@ public class Factory : MonoBehaviour
 
         if (MainPlayer.Instance.Raiting < 1000)
         {
-            car = Instantiate(_car, spawnPointTransform.position, spawnPointTransform.rotation);
-            car.GetComponent<RoberryPathFinder>().SetTarget(randomHouse);
+            if (_spawnOnly == -1)
+            {
+                car = Instantiate(_car, spawnPointTransform.position, spawnPointTransform.rotation);
+                car.GetComponent<RoberryPathFinder>().SetTarget(randomHouse);
+            }
+            else
+            {
+                car = Instantiate(_spawnOnly == 3 ? _carhard : (_spawnOnly == 2 ? _carMiddle : _car), spawnPointTransform.position, spawnPointTransform.rotation);
+                car.GetComponent<RoberryPathFinder>().SetTarget(randomHouse);
+            }
+
+
         }
         else if (MainPlayer.Instance.Raiting < 1500)
         {
-            int i = Random.Range(0, 2);
+            int i;
+            if (_spawnOnly == -1)
+            {
+                i = Random.Range(0, 2);
+            }
+            else {
+                i = _spawnOnly;
+            }
+               
             if (i == 0)
             {
                 car = Instantiate(_car, spawnPointTransform.position, spawnPointTransform.rotation);
@@ -93,7 +114,16 @@ public class Factory : MonoBehaviour
             }
         }
         else {
-            int i = Random.Range(0, 3);
+            int i;
+            if (_spawnOnly == -1)
+            {
+                i = Random.Range(0, 2);
+            }
+            else
+            {
+                i = _spawnOnly;
+            }
+
             if (i == 0)
             {
                 car = Instantiate(_car, spawnPointTransform.position, spawnPointTransform.rotation);

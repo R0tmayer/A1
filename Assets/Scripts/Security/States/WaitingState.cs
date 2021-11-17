@@ -22,7 +22,7 @@ public class WaitingState : StateSecurity
             }
         }
 
-        List<string> variant = new List<string>() { "А1 на месте", "А1 ожидает грабителя", "А1 в засаде" };
+        List<string> variant = new List<string>() { "А1 на месте" };
 
         int q = Random.Range(0, variant.Count);
         character.Inst(variant[q]);

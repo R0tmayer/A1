@@ -209,8 +209,12 @@ MonoBehaviour:
   isEnableCrossSprite: 0
   crossSprite: {fileID: 21300000, guid: cf76172d5ae64034995be25c73f7154d, type: 3}
   borderSize: 30
-  borderSizeOffset: 120
+  borderSizeOffsetXLeft: -500
+  borderSizeOffsetXRight: -500
+  borderSizeOffsetYTop: -500
+  borderSizeOffsetYBottom: -500
   isRotation: 0
+  isOffImage: 0
   Target: {fileID: 0}
 --- !u!1 &7552974927641507280
 GameObject:
@@ -327,6 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   valTime: {fileID: 5841982662897370402}
   bg: {fileID: 4453271118235731878}
+  child: {fileID: 0}
 --- !u!1 &7552974927962782483
 GameObject:
   m_ObjectHideFlags: 0

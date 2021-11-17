@@ -19,6 +19,7 @@ public class House : MonoBehaviour
 
     [Header("Audio")]
     [Space]
+    public Pack pack;
     public AudioSource audioSource;
     public AudioClip succesAudio;
     public AudioClip failAudio;
@@ -60,11 +61,18 @@ public class House : MonoBehaviour
 
     public void SetSecurityProtected() {
         securityProtected = true;
-        marker.SetActive(false);
+        marker.GetComponent<UITimer>().child.HideImage(false);
     }
 
     public void Awake()
     {
+        _targetPoint = pack._targetPoint;
+        marker = pack.marker;
+        signalParticle = pack.signalParticle;
+        signalWarning = pack.signalWarning;
+        successParticle = pack.successParticle;
+        failParticle = pack.failParticle;
+
         _vfx = _targetPoint.GetComponent<TargetPont>();
         transformForPathFinder = _targetPoint.GetComponent<Transform>();
 

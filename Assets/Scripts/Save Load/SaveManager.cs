@@ -17,8 +17,17 @@ public class SaveManager
         SaveGameData data = new SaveGameData(mainPlayer, targetsManager);
         formatter.Serialize(stream, data);
         stream.Close();
+    }    
+    
+    public static void DeleteSave()
+    {
+        string[] files = Directory.GetFiles(Application.persistentDataPath, "*.gamesave");
+        foreach (var item in files)
+        {
+            File.Delete(item);
+        }
+        
     }
-
 
     public static SaveGameData LoadData(string saveName) {
         string filePath = Application.persistentDataPath + "/" + saveName;

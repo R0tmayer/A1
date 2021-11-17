@@ -22,14 +22,21 @@ public class RobberyState : State
 
         while (character.roberryPathFinder.movePositionHouse.Property > 0)
         {
-            character.roberryPathFinder.movePositionHouse.marker.GetComponent<UITimer>().SetNewTime(""+character.roberryPathFinder.movePositionHouse.Property / (character.roberryPathFinder.movePositionHouse.upg_zabor_or_signalization ? character.factorPropertyperSecodn / 1.5f : character.factorPropertyperSecodn), true);
+
+            float val = Mathf.Round(character.roberryPathFinder.movePositionHouse.upg_zabor_or_signalization ?
+                character.factorPropertyperSecodn / 1.5f :
+                character.factorPropertyperSecodn);
+
+            float time = Mathf.Round(character.roberryPathFinder.movePositionHouse.Property / val);
+
+            character.roberryPathFinder.movePositionHouse.marker.GetComponent<UITimer>().SetNewTime(""+ time, true);
             yield return new WaitForSeconds(1);
-            if (character.roberryPathFinder.movePositionHouse.Property - character.factorPropertyperSecodn <= 0)
+            if (character.roberryPathFinder.movePositionHouse.Property - val <= 0)
             {
                 character.StopCoroutineTMP();
             }
 
-            character.roberryPathFinder.movePositionHouse.Property = character.roberryPathFinder.movePositionHouse.upg_zabor_or_signalization ? character.factorPropertyperSecodn / 1.5f : character.factorPropertyperSecodn; 
+            character.roberryPathFinder.movePositionHouse.Property = val; 
         }
     }
 

@@ -54,7 +54,7 @@ public class MovingState : State
         if (character.roberryPathFinder.isRobbies)
             stateMachine.ChangeState(character.robbery);
 
-        character.roberryPathFinder.movePositionHouse.marker.GetComponent<UITimer>().SetNewTime(""+character.navMeshAgent.GetPathRemainingDistance() / character.navMeshAgent.speed, false);
+        character.roberryPathFinder.movePositionHouse.marker.GetComponent<UITimer>().SetNewTime(""+(int)(character.navMeshAgent.GetPathRemainingDistance() / character.navMeshAgent.speed), false);
 
     }
 

@@ -788,6 +788,7 @@ MonoBehaviour:
   - {fileID: 8356784937528436654}
   - {fileID: 8356784937154355024}
   - {fileID: 8356784936709403960}
+  navMeshAgent: {fileID: 0}
   fadeSpeed: 0.4
   roberryPathFinder: {fileID: 0}
   factorPropertyperSecodn: 12.5

@@ -12,6 +12,7 @@ public class GameManager : SceneSingleton<GameManager>
     [SerializeField] private float _spawnInterval;
     [SerializeField] private Factory Factory;
     public int currentCarsCount;
+    public int timeToStartGame = 5;
 
     [SerializeField] private GameObject[] _interfaceElements;
 
@@ -41,7 +42,7 @@ public class GameManager : SceneSingleton<GameManager>
     
     IEnumerator DelayRobSpawn()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(timeToStartGame);
    
         StartCoroutine(RubberSpawner());
     }

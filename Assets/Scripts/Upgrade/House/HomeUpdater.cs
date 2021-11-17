@@ -121,11 +121,19 @@ public class HomeUpdater : MonoBehaviour
                 house.rob = true;
                 house.StartRobbery();
 
-                yield return new WaitForSeconds(30);
+                int time = 30;
+                while (time > 0)
+                {
+                    yield return new WaitForSeconds(1);
+                    time--;
+                    house.marker.GetComponent<UITimer>().SetNewTime("" + time, true);
+                }
+               
                 if (house.rob)
                 {
                     MainPlayer.Instance.ShowMessage("Вы не отреагировали на вызов");
                     house.FakeSignalizationFailure();
+
                 }
 
             }

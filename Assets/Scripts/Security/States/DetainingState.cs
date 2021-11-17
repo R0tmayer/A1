@@ -8,7 +8,7 @@ public class DetainingState : StateSecurity
     float timer;
 
     int prevTime;
-    List<string> variant = new List<string>() { "А1 начали задержание, до задержания ", "А1 задержат грабителя через ", };
+    List<string> variant = new List<string>() { "А1 на месте. До задержания " };
     int q ;
     public DetainingState(SecurityController character, StateMachineSecurity stateMachine) : base(character, stateMachine)
     {

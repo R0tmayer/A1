@@ -29,11 +29,11 @@ public class SaveLoadController : MonoBehaviour
         }
     }
 
-/*    private void Awake()
-    { 
-        
 
-    }*/
+    public void DeleteSaves()
+    {
+        SaveManager.DeleteSave();
+    }
 
     private void Start()
     {

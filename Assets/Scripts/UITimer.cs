@@ -8,6 +8,7 @@ public class UITimer : MonoBehaviour
 
     [SerializeField] private Text valTime;
     [SerializeField] private GameObject bg;
+    public Window_QuestPointer child;
 
     public void SetNewTime(string t, bool isRob) {
         valTime.text = t.ToString();

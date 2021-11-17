@@ -9,8 +9,15 @@ public class Window_QuestPointer : MonoBehaviour {
     [SerializeField] private bool isEnableCrossSprite;
     [SerializeField] private Sprite crossSprite;
     [SerializeField] float borderSize = 30f;
-    [SerializeField] float borderSizeOffset = 0f;
+
+    [SerializeField] float borderSizeOffsetXLeft = 0f;
+    [SerializeField] float borderSizeOffsetXRight = 0f;
+    [SerializeField] float borderSizeOffsetYTop = 0f;
+    [SerializeField] float borderSizeOffsetYBottom = 0f;
+
     [SerializeField] bool isRotation;
+
+    [SerializeField] bool isOffImage;
     
 
 
@@ -37,27 +44,39 @@ public class Window_QuestPointer : MonoBehaviour {
     private void Update() {
         Target = gameObject.GetComponent<Transform>().parent.gameObject.GetComponent<Transform>().parent;
         Vector3 targetPositionScreenPoint = Camera.main.WorldToScreenPoint(targetPosition);
-        bool isOffScreen = targetPositionScreenPoint.x <= borderSize || targetPositionScreenPoint.x >= Screen.width - borderSize || targetPositionScreenPoint.y <= borderSize || targetPositionScreenPoint.y >= Screen.height - borderSize - borderSizeOffset;
+        bool isOffScreen = 
+            targetPositionScreenPoint.x <= borderSize + borderSizeOffsetXLeft || 
+            targetPositionScreenPoint.x >= Screen.width - borderSize - borderSizeOffsetXRight || 
+            targetPositionScreenPoint.y <= borderSize + borderSizeOffsetYBottom || 
+            targetPositionScreenPoint.y >= Screen.height - borderSize - borderSizeOffsetYTop;
 
         if (isOffScreen) {
             RotatePointerTowardsTargetPosition();
-            pointerImage.enabled = true;
-            pointerImage.sprite = arrowSprite;
+            if (!isOffImage)
+            {
+                pointerImage.enabled = true;
+                pointerImage.sprite = arrowSprite;
+            }
             Vector3 cappedTargetScreenPosition = targetPositionScreenPoint;
-            if (cappedTargetScreenPosition.x <= borderSize) cappedTargetScreenPosition.x = borderSize;
-            if (cappedTargetScreenPosition.x >= Screen.width - borderSize) cappedTargetScreenPosition.x = Screen.width - borderSize;
-            if (cappedTargetScreenPosition.y <= borderSize) cappedTargetScreenPosition.y = borderSize;
-            if (cappedTargetScreenPosition.y >= Screen.height - borderSize - borderSizeOffset) cappedTargetScreenPosition.y = Screen.height - borderSize - borderSizeOffset;
+            if (cappedTargetScreenPosition.x <= borderSize + borderSizeOffsetXLeft) cappedTargetScreenPosition.x = borderSize + borderSizeOffsetXLeft;
+            if (cappedTargetScreenPosition.x >= Screen.width - borderSize - borderSizeOffsetXRight) cappedTargetScreenPosition.x = Screen.width - borderSize - borderSizeOffsetXRight;
+            if (cappedTargetScreenPosition.y <= borderSize + borderSizeOffsetYBottom) cappedTargetScreenPosition.y = borderSize + borderSizeOffsetYBottom;
+            if (cappedTargetScreenPosition.y >= Screen.height - borderSize - borderSizeOffsetYTop) cappedTargetScreenPosition.y = Screen.height - borderSize - borderSizeOffsetYTop;
 
             Vector3 pointerWorldPosition = uiCamera.ScreenToWorldPoint(cappedTargetScreenPosition);
             pointerRectTransform.position = pointerWorldPosition;
             pointerRectTransform.localPosition = new Vector3(pointerRectTransform.localPosition.x, pointerRectTransform.localPosition.y, 0f);
         } else {
-            if (!isEnableCrossSprite)
+            if (!isOffImage)
             {
-                pointerImage.enabled = false ;
-            } else {
-                pointerImage.sprite = crossSprite;
+                if (!isEnableCrossSprite)
+                {
+                    pointerImage.enabled = false;
+                }
+                else
+                {
+                    pointerImage.sprite = crossSprite;
+                }
             }
            
             Vector3 pointerWorldPosition = uiCamera.ScreenToWorldPoint(targetPositionScreenPoint);
@@ -82,6 +101,11 @@ public class Window_QuestPointer : MonoBehaviour {
 
     public void Hide() {
         gameObject.SetActive(false);
+    }   
+    
+    public void HideImage(bool state) {
+        isOffImage = !state;
+        pointerImage.enabled = state;
     }
 
    [ContextMenu("Show")]

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
@@ -27,6 +28,9 @@ public class CutScene : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _nextSlide;
 
+    [SerializeField] private bool _skipCutScene;
+
+
     private void Start()
     {
         if (_namePrefs == null)
@@ -36,7 +40,7 @@ public class CutScene : MonoBehaviour
 
         _wScreen = Screen.width;
 
-        if (PlayerPrefs.GetInt(_namePrefs) == 1)
+        if (PlayerPrefs.GetInt(_namePrefs) == 1 || _skipCutScene)
         {
             EndCutScene();
         }
@@ -104,5 +108,10 @@ public class CutScene : MonoBehaviour
 
     public void ResetPrefs() {
         PlayerPrefs.SetInt(_namePrefs, 0);
+        AchivemntController.Instance.ResetAchivement();
+    }
+
+    public void Restart() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
