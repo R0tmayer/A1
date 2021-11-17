@@ -7,13 +7,13 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
-    [Header("Auth UI")] 
-    
+    [Header("Auth UI")]
+
     [SerializeField] private GameObject _loginUI;
     [SerializeField] private GameObject _registerUI;
 
-    [Header("MainMenu UI")] 
-    
+    [Header("MainMenu UI")]
+
     [SerializeField] private GameObject _mapChoiceUI;
 
     [SerializeField] private GameObject _mainMenuUI;
@@ -53,7 +53,7 @@ public class UIManager : MonoBehaviour
     {
         _loginUI.SetActive(false);
         _registerUI.SetActive(false);
-        
+
         _mainMenuUI.SetActive(false);
 
         _mapChoiceUI.SetActive(false);
@@ -62,7 +62,7 @@ public class UIManager : MonoBehaviour
         _userDataUI.SetActive(false);
         _leaderboardUI.SetActive(false);
         _achievementsUI.SetActive(false);
-        
+
         _achievementListInGame.CloseWindow();
     }
 
@@ -70,7 +70,30 @@ public class UIManager : MonoBehaviour
     {
         GuestIdentificator.isGuest = true;
 
-        //TODO: Load PlayerPrefs...
+        SaveGameData data = SaveManager.LoadData("save.gamesave");
+
+        if (data == null)
+        {
+            Debug.LogError("DataSave is null");
+            return;
+        }
+
+        MainPlayer.Instance.raiting = data.exp;
+        MainPlayer.Instance.money = data.money;
+
+        TargetsManager.Instance.factoriesSecurity.upg_moreCar = data.policeStates.upg_teach;
+        TargetsManager.Instance.factoriesSecurity.upg_teach = data.policeStates.upg_teach;
+        TargetsManager.Instance.factoriesSecurity.upg_powerUp = data.policeStates.upg_powerUp;
+        TargetsManager.Instance.factoriesSecurity.upg_tablet = data.policeStates.upg_tablet;
+        TargetsManager.Instance.factoriesSecurity.upg_radio = data.policeStates.upg_radio;
+        TargetsManager.Instance.factoriesSecurity.upg_fleshers = data.policeStates.upg_fleshers;
+
+        for (int i = 0; i < TargetsManager.Instance.houses.Count; i++)
+        {
+            TargetsManager.Instance.houses[i].upg_zabor_or_signalization = data.housesState[i].upg_zabor_or_signalization;
+            TargetsManager.Instance.houses[i].upg_camera = data.housesState[i].upg_camera;
+        }
+
         ShowMainMenuScreen();
 
         _inviteButton.interactable = false;
@@ -99,7 +122,7 @@ public class UIManager : MonoBehaviour
         ClearScreen();
         _registerUI.SetActive(true);
     }
-    
+
     public void ShowMainMenuScreen()
     {
         ClearScreen();
@@ -135,7 +158,7 @@ public class UIManager : MonoBehaviour
         ClearScreen();
         _leaderboardUI.SetActive(true);
     }
-    
+
     public void ShowAchievementsScreen()
     {
         ClearScreen();
