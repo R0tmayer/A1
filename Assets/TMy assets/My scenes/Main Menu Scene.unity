@@ -1187,8 +1187,6 @@ MonoBehaviour:
   _warningRegisterText: {fileID: 537031899}
   _usernameField: {fileID: 1302477861}
   _expField: {fileID: 935969858}
-  _killsField: {fileID: 2074477787}
-  _deathsField: {fileID: 56877854}
   _scoreElement: {fileID: 1879445940651037232, guid: 829cd42e5df49e047a3a4afb1ba6859d, type: 3}
   _scoreboardContent: {fileID: 1253624677}
 --- !u!1 &188215004
@@ -9252,7 +9250,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 143520013}
         m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
-        m_MethodName: PasteEmailPasswordButton
+        m_MethodName: PasteEmailPassword
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9536,7 +9534,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 143520013}
         m_TargetAssemblyTypeName: 
-        m_MethodName: LoginButton
+        m_MethodName: LoginWithEmailPassword
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10124,6 +10122,50 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &1569921964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1569921966}
+  - component: {fileID: 1569921965}
+  m_Layer: 0
+  m_Name: ExperienceHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1569921965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569921964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90744606d0a140a49bc6d00d77d5a57a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 0
+--- !u!4 &1569921966
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569921964}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1579123167
 GameObject:
   m_ObjectHideFlags: 0
@@ -14236,7 +14278,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 143520013}
         m_TargetAssemblyTypeName: 
-        m_MethodName: RegisterButton
+        m_MethodName: RegisterNewUser
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

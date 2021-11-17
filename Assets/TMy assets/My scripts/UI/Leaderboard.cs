@@ -4,15 +4,11 @@ using UnityEngine;
 public class Leaderboard : MonoBehaviour
 {
     public TMP_Text usernameText;
-    public TMP_Text killsText;
-    public TMP_Text deathsText;
     public TMP_Text xpText;
 
-    public void NewScoreElement (string _username, int _kills, int _deaths, int _xp)
+    public void NewScoreElement (string _username, float _xp)
     {
         usernameText.text = _username;
-        killsText.text = _kills.ToString();
-        deathsText.text = _deaths.ToString();
         xpText.text = _xp.ToString();
     }
 

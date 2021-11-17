@@ -41,7 +41,7 @@ public class SaveLoadController : MonoBehaviour
         SetDataFromSave();
     }
 
-    private void SetDataFromSave()
+    public void SetDataFromSave()
     {
         SaveGameData data = SaveManager.LoadData(loadName);
        
