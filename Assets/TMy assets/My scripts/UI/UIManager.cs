@@ -19,7 +19,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _mainMenuUI;
     [SerializeField] private GameObject _settingsUI;
     [SerializeField] private GameObject _inviteFriendUI;
-    [SerializeField] private GameObject _userDataUI;
     [SerializeField] private GameObject _leaderboardUI;
     [SerializeField] private GameObject _achievementsUI;
 
@@ -59,7 +58,6 @@ public class UIManager : MonoBehaviour
         _mapChoiceUI.SetActive(false);
         _settingsUI.SetActive(false);
         _inviteFriendUI.SetActive(false);
-        _userDataUI.SetActive(false);
         _leaderboardUI.SetActive(false);
         _achievementsUI.SetActive(false);
 
@@ -145,12 +143,6 @@ public class UIManager : MonoBehaviour
     {
         ClearScreen();
         _inviteFriendUI.SetActive(true);
-    }
-
-    public void ShowUserDataScreen()
-    {
-        ClearScreen();
-        _userDataUI.SetActive(true);
     }
 
     public void ShowLeaderboardScreen()
