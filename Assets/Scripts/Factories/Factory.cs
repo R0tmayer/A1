@@ -117,7 +117,7 @@ public class Factory : MonoBehaviour
             int i;
             if (_spawnOnly == -1)
             {
-                i = Random.Range(0, 2);
+                i = Random.Range(0, 3);
             }
             else
             {

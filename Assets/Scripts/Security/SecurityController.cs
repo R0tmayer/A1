@@ -41,6 +41,8 @@ public class SecurityController : MonoBehaviour
     public bool bestRoad;
     public bool autoPilot;
 
+    public bool isStoped;
+
     GameObject objTxt;
 
     //[SerializeField] private NavMeshAgent _navMeshAgent;

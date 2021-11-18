@@ -11,6 +11,7 @@ public class WaitingState : StateSecurity
 
     public override void Enter()
     {
+        character.isStoped = true;
        // MainPlayer.Instance.PoliceCarState = "Ожидаем грабителя";
         character.tartgetHouse._house.OnCompleteRobbir += EndRobbie;
 
