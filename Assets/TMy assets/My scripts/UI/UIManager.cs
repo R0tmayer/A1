@@ -70,6 +70,8 @@ public class UIManager : MonoBehaviour
 
         _inviteButton.interactable = false;
         _leaderboardButton.interactable = false;
+
+        GuestHolder.state = true;
     }
 
     public void OpenHyperlink()
@@ -83,6 +85,7 @@ public class UIManager : MonoBehaviour
         _inviteButton.interactable = true;
         _leaderboardButton.interactable = true;
 
+        GuestHolder.state = false;
         ClearScreen();
         _loginUI.SetActive(true);
     }
