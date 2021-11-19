@@ -10,6 +10,8 @@ using TMPro;
 
 public class FirebaseManager : MonoBehaviour
 {
+    #region Fields
+
     [Header("Firebase")] private DependencyStatus _dependencyStatus;
     private FirebaseAuth _auth;
     private FirebaseUser _user;
@@ -34,13 +36,15 @@ public class FirebaseManager : MonoBehaviour
 
     [SerializeField] private GameObject _scoreElement;
     [SerializeField] private Transform _scoreboardContent;
-    private ExperienceHolder _experienceHolder;
 
+    private const string _dbUsersField = "users";
+    private const string _dbUsernameField = "username";
+    private const string _dbExpField = "exp";
 
-    private readonly string _dbUsersField = "users";
-    private readonly string _dbUsernameField = "username";
-    private readonly string _dbExpField = "exp";
+    #endregion
 
+    #region Awake & Start
+    
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -48,8 +52,6 @@ public class FirebaseManager : MonoBehaviour
 
     private void Start()
     {
-        _experienceHolder = FindObjectOfType<ExperienceHolder>();
-
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {
             _dependencyStatus = task.Result;
@@ -65,6 +67,11 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
+    
+    #endregion
+
+    #region InitialFirebase & AuthStateChanged
+    
     private void InitializeFirebase()
     {
         _auth = FirebaseAuth.DefaultInstance;
@@ -79,7 +86,7 @@ public class FirebaseManager : MonoBehaviour
             _user = _auth.CurrentUser;
             Debug.Log(_user.Email);
 
-            StartCoroutine(DownloadUserData());
+            DownloadUserDataFromFirebase();
             UIManager.instance.ShowMainMenuScreen();
         }
         else
@@ -87,6 +94,10 @@ public class FirebaseManager : MonoBehaviour
             UIManager.instance.ShowLoginScreen();
         }
     }
+    
+    #endregion
+
+    #region LoginUser & SignOut
 
     public void LoginWithEmailPassword()
     {
@@ -133,7 +144,7 @@ public class FirebaseManager : MonoBehaviour
             _warningLoginText.text = string.Empty;
             _loginDebugMessage.text = "Logged In";
 
-            StartCoroutine(DownloadUserData());
+            DownloadUserDataFromFirebase();
 
             yield return new WaitForSeconds(2);
 
@@ -144,33 +155,17 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
-    private IEnumerator DownloadUserData()
+    public void SignOutButton()
     {
-        var dataBaseTask = _dataBaseReference.Child(_dbUsersField).Child(_user.UserId).GetValueAsync();
-        yield return new WaitUntil(() => dataBaseTask.IsCompleted);
-        DataSnapshot snapshot = dataBaseTask.Result;
-
-        if (dataBaseTask.Exception != null)
-        {
-            Debug.LogWarning($"Failed to Download User Data with {dataBaseTask.Exception}");
-        }
-        else
-        {
-            _experienceHolder.value = Convert.ToSingle(snapshot.Child(_dbExpField).Value ?? 0f);
-            SaveGameData playerPrefsData = SaveManager.LoadData("save.gamesave");
-
-            if (playerPrefsData == null)
-            {
-                Debug.LogError("PlayerPrefs is null");
-                yield break;
-            }
-
-            if (_experienceHolder.value < playerPrefsData.exp)
-            {
-                _experienceHolder.value = playerPrefsData.exp;
-            }
-        }
+        _auth.SignOut();
+        UIManager.instance.ShowLoginScreen();
+        ClearRegisterFields();
+        ClearLoginFields();
     }
+
+    #endregion
+
+    #region  RegisterNewUser
 
     public void RegisterNewUser()
     {
@@ -253,46 +248,50 @@ public class FirebaseManager : MonoBehaviour
         ClearLoginFields();
     }
 
-    public void SignOutButton()
+    #endregion
+
+    #region Download & Update FirebaseData
+
+    private void DownloadUserDataFromFirebase()
     {
-        _auth.SignOut();
-        UIManager.instance.ShowLoginScreen();
-        ClearRegisterFields();
-        ClearLoginFields();
+        StartCoroutine(DownloadData());
     }
-
-    private void UpdateFirebaseUserDataOnce()
+    
+    private IEnumerator DownloadData()
     {
-        StartCoroutine(UpdateUserDataOnce());
-    }
+        var dataBaseTask = _dataBaseReference.Child(_dbUsersField).Child(_user.UserId).GetValueAsync();
+        yield return new WaitUntil(() => dataBaseTask.IsCompleted);
+        DataSnapshot snapshot = dataBaseTask.Result;
 
-    private IEnumerator UpdateUserDataLoop()
-    {
-        var waitDelay = new WaitForSeconds(60);
-
-        while (true)
+        if (dataBaseTask.Exception != null)
         {
-            Task usernameTask = _dataBaseReference.Child(_dbUsersField).Child(_user.UserId).Child(_dbUsernameField).SetValueAsync(_user.DisplayName);
-            yield return new WaitUntil(() => usernameTask.IsCompleted);
+            Debug.LogWarning($"Failed to Download User Data with {dataBaseTask.Exception}");
+        }
+        else
+        {
+            //Compare firebase with player prefs
+            ExperienceHolder.value = Convert.ToSingle(snapshot.Child(_dbExpField).Value ?? 0f);
+            SaveGameData playerPrefsData = SaveManager.LoadData("save.gamesave");
 
-            if (usernameTask.Exception != null)
+            if (playerPrefsData == null)
             {
-                Debug.LogWarning($"Failed to register usernameTask with {usernameTask.Exception}");
+                Debug.LogError("PlayerPrefs is null");
+                yield break;
             }
 
-            Task expTask = _dataBaseReference.Child(_dbUsersField).Child(_user.UserId).Child(_dbExpField).SetValueAsync(_experienceHolder.value);
-            yield return new WaitUntil(() => expTask.IsCompleted);
-
-            if (expTask.Exception != null)
+            if (ExperienceHolder.value < playerPrefsData.exp)
             {
-                Debug.LogWarning($"Failed to register expTask with {expTask.Exception}");
+                ExperienceHolder.value = playerPrefsData.exp;
             }
-
-            yield return waitDelay;
         }
     }
 
-    private IEnumerator UpdateUserDataOnce()
+    public void UpdateFirebaseUserData()
+    {
+        StartCoroutine(UpdateUserData());
+    }
+
+    private IEnumerator UpdateUserData()
     {
         Task usernameTask = _dataBaseReference.Child(_dbUsersField).Child(_user.UserId).Child(_dbUsernameField).SetValueAsync(_user.DisplayName);
         yield return new WaitUntil(() => usernameTask.IsCompleted);
@@ -302,7 +301,7 @@ public class FirebaseManager : MonoBehaviour
             Debug.LogWarning($"Failed to register usernameTask with {usernameTask.Exception}");
         }
 
-        Task expTask = _dataBaseReference.Child(_dbUsersField).Child(_user.UserId).Child(_dbExpField).SetValueAsync(_experienceHolder.value);
+        Task expTask = _dataBaseReference.Child(_dbUsersField).Child(_user.UserId).Child(_dbExpField).SetValueAsync(ExperienceHolder.value);
         yield return new WaitUntil(() => expTask.IsCompleted);
 
         if (expTask.Exception != null)
@@ -311,6 +310,10 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Leaderboard
+
     public void LeaderboardButton()
     {
         StartCoroutine(LeaderboardCoroutine());
@@ -318,7 +321,6 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator LeaderboardCoroutine()
     {
-        UpdateFirebaseUserDataOnce();
         var dataBaseTask = _dataBaseReference.Child(_dbUsersField).GetValueAsync();
         yield return new WaitUntil(() => dataBaseTask.IsCompleted);
 
@@ -338,7 +340,7 @@ public class FirebaseManager : MonoBehaviour
             foreach (DataSnapshot childSnapshot in snapshot.Children.Reverse())
             {
                 //TODO Изменить значения после ??
-                float exp = Convert.ToSingle(childSnapshot.Child(_dbExpField).Value ?? _experienceHolder.value);
+                float exp = Convert.ToSingle(childSnapshot.Child(_dbExpField).Value ?? ExperienceHolder.value);
                 Debug.LogWarning("childSnapshot.Child(_dbExpField).Value is null");
                 var username = childSnapshot.Child(_dbUsernameField).Value.ToString() ?? "#Error 404";
 
@@ -349,6 +351,10 @@ public class FirebaseManager : MonoBehaviour
             UIManager.instance.ShowLeaderboardScreen();
         }
     }
+    
+    #endregion
+
+    #region ClearFields & PasteEmailPassword
 
     private void ClearLoginFields()
     {
@@ -369,4 +375,7 @@ public class FirebaseManager : MonoBehaviour
         _emailLoginField.text = "r.salnikov1998@gmail.com";
         _passwordLoginField.text = "12345a";
     }
+    
+    #endregion
+
 }
