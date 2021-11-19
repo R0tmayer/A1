@@ -306,6 +306,14 @@ public class House : MonoBehaviour
         rob = true;
     }
 
+/*    private void AddScoreToBase() {
+        if (MainPlayer.Instance.Raiting > ExperienceHolder.value)
+        {
+            ExperienceHolder.value = MainPlayer.Instance.Raiting;
+            var firebase = FindObjectOfType<FirebaseManager>();
+            firebase.UpdateFirebaseUserData();
+        }
+    }*/
 
     public void ProtectionSucces() {
         audioSource.PlayOneShot(succesAudio);
@@ -316,6 +324,8 @@ public class House : MonoBehaviour
         //Debug.Log("Ограбление предотвращено");
        /* MainPlayer.Instance.HouseState = "Ограбление предотвращено =)";*/
         MainPlayer.Instance.Raiting = 50;
+
+
         MainPlayer.Instance.Money = 50;
         TargetsManager.Instance.countUpdate++;
         if (TargetsManager.Instance.countUpdate >= 20)
