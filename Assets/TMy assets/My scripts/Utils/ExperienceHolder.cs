@@ -2,12 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExperienceHolder : MonoBehaviour
+public class ExperienceHolder 
 {
-    public float value = 0;
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
+    public static float value = 0;
 }
