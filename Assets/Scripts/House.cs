@@ -44,6 +44,8 @@ public class House : MonoBehaviour
     private TargetPont _vfx;
     private Outline _outline;
 
+    private FirebaseManager firebase;
+
 
     [Header("States")]
     [SerializeField] public bool going_to_rob; //Едут на ограбление
@@ -66,6 +68,7 @@ public class House : MonoBehaviour
 
     public void Awake()
     {
+        
         _targetPoint = pack._targetPoint;
         marker = pack.marker;
         signalParticle = pack.signalParticle;
@@ -79,6 +82,7 @@ public class House : MonoBehaviour
     }
     private void Start()
     {
+        firebase = FindObjectOfType<FirebaseManager>();
         marker.GetComponent<Canvas>().worldCamera = Camera.main;
         _vfx.SetParentHouse(this);
         _outline = GetComponent<Outline>();
@@ -306,26 +310,25 @@ public class House : MonoBehaviour
         rob = true;
     }
 
-/*    private void AddScoreToBase() {
-        if (MainPlayer.Instance.Raiting > ExperienceHolder.value)
+    private void AddScoreToBase()
+    {
+        if (MainPlayer.Instance.Raiting > ExperienceHolder.value && true)
         {
             ExperienceHolder.value = MainPlayer.Instance.Raiting;
-            var firebase = FindObjectOfType<FirebaseManager>();
             firebase.UpdateFirebaseUserData();
         }
-    }*/
+    }
 
+    [ContextMenu("ProtectionSucces")]
     public void ProtectionSucces() {
         audioSource.PlayOneShot(succesAudio);
         ViewHousStatusParticle(successParticle);
         EndRobbery();
-
         //Тут считаем очки, прибавляем или отнимаем и сколько
         //Debug.Log("Ограбление предотвращено");
-       /* MainPlayer.Instance.HouseState = "Ограбление предотвращено =)";*/
+        /* MainPlayer.Instance.HouseState = "Ограбление предотвращено =)";*/
         MainPlayer.Instance.Raiting = 50;
-
-
+        AddScoreToBase();
         MainPlayer.Instance.Money = 50;
         TargetsManager.Instance.countUpdate++;
         if (TargetsManager.Instance.countUpdate >= 20)
@@ -335,6 +338,7 @@ public class House : MonoBehaviour
         //TargetsManager.Instance.factoriesSecurity.carsCount++;
     }
 
+    [ContextMenu("ProtectionFailure")]
     public void ProtectionFailure() {
         audioSource.PlayOneShot(failAudio);
         ViewHousStatusParticle(failParticle);
@@ -346,7 +350,7 @@ public class House : MonoBehaviour
         //Тут считаем очки, прибавляем или отнимаем и сколько
     }
 
-
+    
     public void FakeSignalizationFailure()
     {
         audioSource.PlayOneShot(failAudio);
@@ -356,12 +360,14 @@ public class House : MonoBehaviour
         TargetsManager.Instance.countUpdate = 0;
     }
 
+    
     public void FakeSignalizationSucces()
     {
         audioSource.PlayOneShot(succesAudio);
         ViewHousStatusParticle(successParticle);
         EndRobbery();
         MainPlayer.Instance.Raiting = 25;
+        AddScoreToBase();
         MainPlayer.Instance.Money = 25;
         TargetsManager.Instance.countUpdate++;
         if (TargetsManager.Instance.countUpdate >= 20)
