@@ -16,7 +16,8 @@ public class DetainingState : StateSecurity
 
     public override void Enter()
     {
-       // MainPlayer.Instance.PoliceCarState = "Делаю арес";
+        character.isStoped = true;
+        // MainPlayer.Instance.PoliceCarState = "Делаю арес";
         character.tartgetHouse._house.OnCompleteRobbir += EndRobbie;
         timer = character.timeToArest;
         //Debug.Log("задержания случится через " + (timer));

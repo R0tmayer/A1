@@ -25,7 +25,7 @@ public class RoberryPathFinder : MonoBehaviour
         var dist1 = Vector3.Distance(movePositionHouse.transformForPathFinder.position, transform.position);
         var dist2 = movePositionHouse.security ? Vector3.Distance(movePositionHouse.security.GetComponent<Transform>().position, transform.position) : 555f;
       
-        if ((dist1 < _rangeToTargetPoint && !isRobbies) || dist2 < 4f && !isRobbies && movePositionHouse.securityProtected)
+        if ((dist1 < _rangeToTargetPoint && !isRobbies) || (dist2 < 4f && movePositionHouse.security.isStoped && !isRobbies && movePositionHouse.securityProtected))
         {
             _navMeshAgent.isStopped = true;
             isRobbies = true;
