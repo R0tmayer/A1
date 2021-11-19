@@ -206,24 +206,21 @@ public class House : MonoBehaviour
             AchivemntController.Instance.AchFirstUpdate();
 
             AchChecker();
-
+            SaveLoadController.SaveOut();
             if (_isAHouse)
             {
                 zabor.SetActive(true);
-                Debug.Log("Установили забор");
                 return true;
             }
             else
             {
                 signalParticle.SetActive(true);
-                Debug.Log("Установили сигнализацию");
                 return true;
             }
 
         }
         else {
 
-            Debug.Log("Не хватает денег");
             MainPlayer.Instance.ShowMessage("Не хватает денег");
             return false;
         }
@@ -250,15 +247,13 @@ public class House : MonoBehaviour
         {
             MainPlayer.Instance.Money = -price;
             upg_camera = true;
-            Debug.Log("Установили камеру");
             AchivemntController.Instance.AchFirstUpdate();
             AchChecker();
-
+            SaveLoadController.SaveOut();
             return true;
         }
         else
         {
-            Debug.Log("Не хватает денег");
             MainPlayer.Instance.ShowMessage("Не хватает денег");
             return false;
         }
@@ -312,11 +307,18 @@ public class House : MonoBehaviour
 
     private void AddScoreToBase()
     {
-        if (MainPlayer.Instance.Raiting > ExperienceHolder.value && true)
+        if (!GuestHolder.state)
         {
-            ExperienceHolder.value = MainPlayer.Instance.Raiting;
-            firebase.UpdateFirebaseUserData();
+            if (MainPlayer.Instance.Raiting > ExperienceHolder.value)
+            {
+                ExperienceHolder.value = MainPlayer.Instance.Raiting;
+                firebase.UpdateFirebaseUserData();
+            }
         }
+        else {
+            Debug.Log("Рекорд побит, но вы не авторизованы");
+        }
+
     }
 
     [ContextMenu("ProtectionSucces")]
@@ -335,6 +337,7 @@ public class House : MonoBehaviour
         {
             AchivemntController.Instance.AchProtectedAbsolute();
         }
+        SaveLoadController.SaveOut();
         //TargetsManager.Instance.factoriesSecurity.carsCount++;
     }
 
@@ -347,6 +350,7 @@ public class House : MonoBehaviour
         MainPlayer.Instance.Raiting = upg_camera ? -25 : -50;
         MainPlayer.Instance.Money = upg_camera ? -25 : -50;
         TargetsManager.Instance.countUpdate = 0;
+        SaveLoadController.SaveOut();
         //Тут считаем очки, прибавляем или отнимаем и сколько
     }
 
@@ -358,6 +362,7 @@ public class House : MonoBehaviour
         EndRobbery();
         MainPlayer.Instance.Raiting = -50;
         TargetsManager.Instance.countUpdate = 0;
+        SaveLoadController.SaveOut();
     }
 
     
@@ -367,6 +372,7 @@ public class House : MonoBehaviour
         ViewHousStatusParticle(successParticle);
         EndRobbery();
         MainPlayer.Instance.Raiting = 25;
+        
         AddScoreToBase();
         MainPlayer.Instance.Money = 25;
         TargetsManager.Instance.countUpdate++;
@@ -374,6 +380,7 @@ public class House : MonoBehaviour
         {
             AchivemntController.Instance.AchProtectedAbsolute();
         }
+        SaveLoadController.SaveOut();
     }
 
     public void ViewHousStatusParticle(GameObject item) {

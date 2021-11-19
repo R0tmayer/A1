@@ -8,27 +8,30 @@ public class SaveLoadController : MonoBehaviour
     [Header("Пример - save.gamesave")]
     [SerializeField] private SaveGameData _data;
     public SaveGameData Data => _data;
-    public string loadName = "save.gamesave";
+    public static string loadName = "save.gamesave";
 
-    private MainPlayer mainPlayer;
-    private TargetsManager targetsManager;
+    private static MainPlayer mainPlayer;
+    private static TargetsManager targetsManager;
 
     [ContextMenu("Save")]
-    private void SaveGame() {
+    private static void SaveGame() {
         mainPlayer = MainPlayer.Instance;
         targetsManager = TargetsManager.Instance;
         SaveManager.SaveData(mainPlayer, targetsManager, loadName);
     }
 
-    IEnumerator SaveTimer() {
-        while (true)
-        {
-            yield return new WaitForSeconds(5);
-            //Debug.Log("Сохранил игру");
-            SaveGame();
-        }
-    }
+    /*    IEnumerator SaveTimer() {
+            while (true)
+            {
+                yield return new WaitForSeconds(5);
+                //Debug.Log("Сохранил игру");
+                SaveGame();
+            }
+        }*/
 
+    public static void SaveOut() {
+        SaveGame();
+    }
 
     public void DeleteSaves()
     {
@@ -37,7 +40,7 @@ public class SaveLoadController : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SaveTimer());
+      //  StartCoroutine(SaveTimer());
         SetDataFromSave();
     }
 

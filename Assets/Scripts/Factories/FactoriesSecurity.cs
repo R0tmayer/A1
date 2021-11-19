@@ -122,6 +122,7 @@ public class FactoriesSecurity : MonoBehaviour
         {
             MainPlayer.Instance.Money = -price;
             AchivemntController.Instance.AchFirstUpdate();
+            SaveLoadController.SaveOut();
             // Debug.Log("Приобрели "+name);
             return true;
         }
