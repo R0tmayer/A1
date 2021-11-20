@@ -11,9 +11,8 @@ public class FacebookManager : MonoBehaviour
 {
     private FirebaseAuth _auth;
     private DependencyStatus _dependencyStatus;
-    private FirebaseUser _user;
 
-    public Text text;
+    [SerializeField] private Text _messageInfo;
 
     private void Start()
     {
@@ -28,7 +27,7 @@ public class FacebookManager : MonoBehaviour
             else
             {
                 Debug.LogError("Could not resolve all Firebase dependencies: " + _dependencyStatus);
-                text.text = $"Could not resolve all Firebase dependencies: + {_dependencyStatus}";
+                _messageInfo.text = $"Could not resolve all Firebase dependencies: + {_dependencyStatus}";
             }
         });
     }
@@ -36,8 +35,6 @@ public class FacebookManager : MonoBehaviour
     private void InitFacebook()
     {
         _auth = FirebaseAuth.DefaultInstance;
-        _auth.StateChanged += AuthStateChanged;
-
 
         if(!FB.IsInitialized)
         {
@@ -45,19 +42,11 @@ public class FacebookManager : MonoBehaviour
         }
     }
     
-    private void AuthStateChanged(object sender, EventArgs eventArgs)
-    {
-        if (_auth.CurrentUser != null)
-        {
-            _user = _auth.CurrentUser;
-        }
-    }
-
     private void AuthStatusCallback(ILoginResult result)
     {
         if (result.Error != null)
         {
-            text.text = result.Error;
+            _messageInfo.text = result.Error;
 
             Debug.Log(result.Error);
             return;
@@ -65,21 +54,19 @@ public class FacebookManager : MonoBehaviour
 
         if (FB.IsLoggedIn)
         {
-            text.text  = "LoginViaFirebaseFacebook";
-
-            Debug.Log("LoginViaFirebaseFacebook");
             LoginViaFirebaseFacebook();
         }
         else
         {
-            text.text  = "User cancelled login";
+            _messageInfo.text  = "User cancelled login";
             Debug.Log("User cancelled login");
         }
     }
 
     private void LoginViaFirebaseFacebook()
     {
-        LogOut();
+        _messageInfo.text  = "Login Facebook...Please wait";
+
         var accessToken = AccessToken.CurrentAccessToken;
         Credential credential = FacebookAuthProvider.GetCredential(accessToken.TokenString);
 
@@ -87,7 +74,7 @@ public class FacebookManager : MonoBehaviour
         {
             if (task.IsCanceled)
             {
-                text.text  = "SignInWithCredentialAsync was canceled";
+                _messageInfo.text  = "SignInWithCredentialAsync was canceled";
 
                 Debug.LogError("SignInWithCredentialAsync was canceled.");
                 return;
@@ -95,28 +82,27 @@ public class FacebookManager : MonoBehaviour
 
             if (task.IsFaulted)
             {
-                Debug.LogError("SignInWithCredentialAsync encountered an error: " + task.Exception);
-                text.text  = "SignInWithCredentialAsync encountered an error:" + task.Exception;
-                return;
+                var firebaseException = task.Exception.GetBaseException() as FirebaseException;
+                var errorCode = (AuthError)firebaseException.ErrorCode;
+
+                if (errorCode == AuthError.AccountExistsWithDifferentCredentials)
+                {
+                    Debug.Log("Email already in use. May be you already register this Email?");
+                    UnityMainThread.wkr.AddJob(() => {_messageInfo.text  = "Email already in use. May be you already register this Email?";});
+                }
+                
+                Debug.LogError("task is Faulted");
             }
 
             FirebaseUser newUser = task.Result;
             UnityMainThread.wkr.AddJob(UIManager.instance.ShowMainMenuScreen);
 
             Debug.LogFormat("User signed in successfully: {0} ({1})", newUser.DisplayName, newUser.UserId);
-
-            text.text  = "Success";
         });
     }
 
     public void LoginButtonForFB()
     {
-        var permissions = new List<string>() {};
         FB.LogInWithReadPermissions(null, AuthStatusCallback);
-    }
-
-    private void LogOut()
-    {
-        _auth.SignOut();
     }
 }

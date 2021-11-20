@@ -6,9 +6,9 @@ using System.IO;
 [AddComponentMenu("Game Managers/Audio Manager")]
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance = null; 
-    public static AudioSettingsModel settings = null; 
-    private static string _settingsPath = string.Empty;
+    public static AudioManager instance; 
+    public static AudioSettingsModel settings;
+    private static string _settingsPath;
 
     public delegate void AudioSettingsChanged(); 
     public event AudioSettingsChanged OnAudioSettingsChanged; 
@@ -29,10 +29,7 @@ public class AudioManager : MonoBehaviour
 
     private void InitializeSettings()
     {
-        if (settings == null)
-        {
-            settings = new AudioSettingsModel(); 
-        }
+        settings ??= new AudioSettingsModel();
 
         if (File.Exists(_settingsPath))
         { 
@@ -40,28 +37,22 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void LoadSettings()
+    private void LoadSettings()
     {
-        string _data = File.ReadAllText(_settingsPath); 
-        settings = JsonUtility.FromJson<AudioSettingsModel>(_data); 
+        string data = File.ReadAllText(_settingsPath); 
+        settings = JsonUtility.FromJson<AudioSettingsModel>(data); 
     }
 
-    public void SaveSettings()
+    private void SaveSettings()
     {
-        string _json_data = JsonUtility.ToJson(settings); 
-        File.WriteAllText(_settingsPath, _json_data);
+        string jsonData = JsonUtility.ToJson(settings); 
+        File.WriteAllText(_settingsPath, jsonData);
     }
 
-    public void ToggleSounds(bool enabled)
+    [ContextMenu("Toggle Music")]
+    public void ToggleMusic()
     {
-        settings.sounds = enabled; 
-        SaveSettings(); 
-        OnAudioSettingsChanged?.Invoke(); 
-    }
-
-    public void ToggleMusic(bool enabled)
-    {
-        settings.music = enabled; 
+        settings.music = !settings.music; 
         SaveSettings(); 
         OnAudioSettingsChanged?.Invoke(); 
     }

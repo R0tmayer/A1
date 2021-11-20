@@ -12,23 +12,23 @@ public class FirebaseManager : MonoBehaviour
 {
     #region Fields
 
-    [Header("Firebase")] private DependencyStatus _dependencyStatus;
+    [Header("Firebase")] 
+    
+    private DependencyStatus _dependencyStatus;
     private FirebaseAuth _auth;
     private FirebaseUser _user;
     private DatabaseReference _dataBaseReference;
 
     [Header("LoginScreen")]
-    [SerializeField]
-    private TMP_InputField _emailLoginField;
-
+    
+    [SerializeField] private TMP_InputField _emailLoginField;
     [SerializeField] private TMP_InputField _passwordLoginField;
-    [SerializeField] private TMP_Text _warningLoginText;
-    [SerializeField] private TMP_Text _loginDebugMessage;
+    [SerializeField] private TMP_Text _loginMessage;
+    [SerializeField] private TMP_Text _registerMessage;
 
     [Header("RegisterScreen")]
-    [SerializeField]
-    private TMP_InputField _usernameRegisterField;
-
+    
+    [SerializeField] private TMP_InputField _usernameRegisterField;
     [SerializeField] private TMP_InputField _emailRegisterField;
     [SerializeField] private TMP_InputField _passwordRegisterField;
     [SerializeField] private TMP_InputField _passwordRegisterVerifyField;
@@ -89,10 +89,6 @@ public class FirebaseManager : MonoBehaviour
             DownloadUserDataFromFirebase();
             UIManager.instance.ShowMainMenuScreen();
         }
-        else
-        {
-            UIManager.instance.ShowLoginScreen();
-        }
     }
     
     #endregion
@@ -106,6 +102,8 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator LoginCoroutine(string email, string password)
     {
+        _loginMessage.text = "Login...Please Wait";
+        
         var loginTask = _auth.SignInWithEmailAndPasswordAsync(email, password);
         yield return new WaitUntil(() => loginTask.IsCompleted);
 
@@ -118,22 +116,22 @@ public class FirebaseManager : MonoBehaviour
             switch (errorCode)
             {
                 case AuthError.MissingEmail:
-                    _warningLoginText.text = "Missing Email";
+                    _loginMessage.text = "Missing Email";
                     break;
                 case AuthError.MissingPassword:
-                    _warningLoginText.text = "Missing Password";
+                    _loginMessage.text = "Missing Password";
                     break;
                 case AuthError.WrongPassword:
-                    _warningLoginText.text = "Wrong Password";
+                    _loginMessage.text = "Wrong Password";
                     break;
                 case AuthError.InvalidEmail:
-                    _warningLoginText.text = "Invalid Email";
+                    _loginMessage.text = "Invalid Email";
                     break;
                 case AuthError.UserNotFound:
-                    _warningLoginText.text = "Account does not exist";
+                    _loginMessage.text = "Account does not exist";
                     break;
                 default:
-                    _warningLoginText.text = "LoginCoroutine Failed!";
+                    _loginMessage.text = "LoginCoroutine Failed!";
                     break;
             }
         }
@@ -141,17 +139,10 @@ public class FirebaseManager : MonoBehaviour
         {
             _user = loginTask.Result;
             Debug.LogFormat("User signed in successfully: {0} ({1})", _user.DisplayName, _user.Email);
-            _warningLoginText.text = string.Empty;
-            _loginDebugMessage.text = "Logged In";
+            _loginMessage.text = "Logged In";
 
             DownloadUserDataFromFirebase();
-
-            yield return new WaitForSeconds(2);
-
             UIManager.instance.ShowMainMenuScreen();
-            _loginDebugMessage.text = string.Empty;
-            ClearLoginFields();
-            ClearRegisterFields();
         }
     }
 
@@ -203,19 +194,19 @@ public class FirebaseManager : MonoBehaviour
             switch (errorCode)
             {
                 case AuthError.MissingEmail:
-                    _warningLoginText.text = "Missing Email";
+                    _registerMessage.text = "Missing Email";
                     break;
                 case AuthError.MissingPassword:
-                    _warningLoginText.text = "Missing Password";
+                    _registerMessage.text = "Missing Password";
                     break;
                 case AuthError.WeakPassword:
-                    _warningLoginText.text = "Weak password";
+                    _registerMessage.text = "Weak password";
                     break;
                 case AuthError.EmailAlreadyInUse:
-                    _warningLoginText.text = "Email already in use";
+                    _registerMessage.text = "Email already in use";
                     break;
                 default:
-                    _warningLoginText.text = "RegisterCoroutine failed!";
+                    _registerMessage.text = "RegisterCoroutine failed!";
                     break;
             }
 
@@ -233,6 +224,7 @@ public class FirebaseManager : MonoBehaviour
         var profile = new UserProfile { DisplayName = username };
         Task profileTask = _user.UpdateUserProfileAsync(profile);
         yield return new WaitUntil(() => profileTask.IsCompleted);
+        _warningRegisterText.text = "Success Registration!";
 
         if (profileTask.Exception != null)
         {
@@ -339,9 +331,7 @@ public class FirebaseManager : MonoBehaviour
 
             foreach (DataSnapshot childSnapshot in snapshot.Children.Reverse())
             {
-                //TODO Изменить значения после ??
                 float exp = Convert.ToSingle(childSnapshot.Child(_dbExpField).Value ?? ExperienceHolder.value);
-                Debug.LogWarning("childSnapshot.Child(_dbExpField).Value is null");
                 var username = childSnapshot.Child(_dbUsernameField).Value.ToString() ?? "#Error 404";
 
                 GameObject scoreboardElement = Instantiate(_scoreElement, _scoreboardContent);
@@ -360,6 +350,8 @@ public class FirebaseManager : MonoBehaviour
     {
         _emailLoginField.text = string.Empty;
         _passwordLoginField.text = string.Empty;
+        
+        _loginMessage.text = string.Empty;
     }
 
     private void ClearRegisterFields()
@@ -368,11 +360,13 @@ public class FirebaseManager : MonoBehaviour
         _emailRegisterField.text = string.Empty;
         _passwordRegisterField.text = string.Empty;
         _passwordRegisterVerifyField.text = string.Empty;
+
+        _registerMessage.text = string.Empty;
     }
 
     public void PasteEmailPassword()
     {
-        _emailLoginField.text = "r.salnikov1998@gmail.com";
+        _emailLoginField.text = "amadest98mail.ru@gmail.com";
         _passwordLoginField.text = "12345a";
     }
     

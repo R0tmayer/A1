@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,7 +16,6 @@ public class UIManager : MonoBehaviour
     [Header("MainMenu UI")]
 
     [SerializeField] private GameObject _mapChoiceUI;
-
     [SerializeField] private GameObject _mainMenuUI;
     [SerializeField] private GameObject _settingsUI;
     [SerializeField] private GameObject _inviteFriendUI;
@@ -23,8 +23,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _achievementsUI;
 
     [Header("Toggle Buttons if Guest")]
+    
     [SerializeField] private Button _inviteButton;
     [SerializeField] private Button _leaderboardButton;
+
+    [Header("Messages")] 
+    
+    [SerializeField] private Text _loginMessage;
+    [SerializeField] private TMP_Text _registerMessage;
+    [SerializeField] private Text _facebookMessage;
+    
 
     private AchievenmentListIngame _achievementListInGame;
     private BlackScreenFade _blackScreenFade;
@@ -62,6 +70,10 @@ public class UIManager : MonoBehaviour
         _achievementsUI.SetActive(false);
 
         _achievementListInGame.CloseWindow();
+
+        _loginMessage.text = string.Empty;
+        _registerMessage.text = string.Empty;
+        _facebookMessage.text = string.Empty;
     }
 
     public void PlayAsGuest()
