@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UI
+  m_EditorClassIdentifier: 
+  m_GroupName: UI
+  m_Data:
+    m_SerializedData: []
+  m_GUID: d364c8267fc92c1459f5b80b7b243924
+  m_SerializeEntries:
+  - m_GUID: fbb2a59cea3e9d940862edcc606882f6
+    m_Address: Assets/TMy assets/My prefabs/UI/UI_Achievements.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1e96440e5ffb13b43aaa0b6997691509
+    m_Address: Assets/TMy assets/My prefabs/UI/UI_BlackScreenFade.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 136295184124e2b4e900a836292985b0
+    m_Address: Assets/TMy assets/My prefabs/UI/UI_InviteFriend.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c7f118724a8cee44cbca0f35929cda81
+    m_Address: Assets/TMy assets/My prefabs/UI/UI_Leaderboard.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6cce4bfb11509114cb250ee793af21f8
+    m_Address: Assets/TMy assets/My prefabs/UI/UI_Login.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: eea8dc239c8e36746b949e4d5b4ed1ad
+    m_Address: Assets/TMy assets/My prefabs/UI/UI_MapChoice.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4afd1ecb470eea1479fdd938b6349e5b
+    m_Address: Assets/TMy assets/My prefabs/UI/UI_Menu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f5ad58f556fe4e84999f76ea0b84b572
+    m_Address: Assets/TMy assets/My prefabs/UI/UI_Register.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0c4f5e4d90b6a074b9fc3de9d2eb7e38
+    m_Address: Assets/TMy assets/My prefabs/UI/UI_Settings.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 870cb456292ada04b83d56aa1af43a6f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3cd70830b1ebd0248ba83dcb32dd6e7a, type: 2}
+    - {fileID: 11400000, guid: 195a37d45761d6349baf20158daa46bb, type: 2}

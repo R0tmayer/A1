@@ -1,22 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
 public class BlackScreenFade : MonoBehaviour
 {
     [SerializeField] private float _fadeSpeed;
-    private Image _image;
-
-    private void Awake()
-    {
-        _image = GetComponent<Image>();
-    }
+    [SerializeField] private Image _image;
 
     private void Start()
     {
-        FadeOut();
+        FadeIn();
     }
 
     private IEnumerator FadeOutCoroutine()
@@ -44,12 +41,12 @@ public class BlackScreenFade : MonoBehaviour
         }
     }
 
-    public void FadeOut()
+    private void FadeOut()
     {
         StartCoroutine(FadeOutCoroutine());
     }
 
-    public void FadeIn()
+    private void FadeIn()
     {
         StartCoroutine(FadeInCoroutine());
     }

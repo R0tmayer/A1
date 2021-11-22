@@ -7,6 +7,8 @@ using Firebase.Database;
 using System.Linq;
 using System.Threading.Tasks;
 using TMPro;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class FirebaseManager : MonoBehaviour
 {
@@ -87,7 +89,7 @@ public class FirebaseManager : MonoBehaviour
             Debug.Log(_user.Email);
 
             DownloadUserDataFromFirebase();
-            UIManager.instance.ShowMainMenuScreen();
+            // UIManager.Instance.ShowMainMenuScreen();
         }
     }
     
@@ -142,14 +144,14 @@ public class FirebaseManager : MonoBehaviour
             _loginMessage.text = "Logged In";
 
             DownloadUserDataFromFirebase();
-            UIManager.instance.ShowMainMenuScreen();
+            // UIManager.Instance.ShowMainMenuScreen();
         }
     }
 
     public void SignOutButton()
     {
         _auth.SignOut();
-        UIManager.instance.ShowLoginScreen();
+        UIManager.Instance.ShowLoginScreen();
         ClearRegisterFields();
         ClearLoginFields();
     }
@@ -234,7 +236,7 @@ public class FirebaseManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(2);
-        UIManager.instance.ShowLoginScreen();
+        UIManager.Instance.ShowLoginScreen();
         _warningRegisterText.text = string.Empty;
         ClearRegisterFields();
         ClearLoginFields();
@@ -335,13 +337,30 @@ public class FirebaseManager : MonoBehaviour
                 var username = childSnapshot.Child(_dbUsernameField).Value.ToString() ?? "#Error 404";
 
                 GameObject scoreboardElement = Instantiate(_scoreElement, _scoreboardContent);
-                scoreboardElement.GetComponent<Leaderboard>().NewScoreElement(username, exp);
+
+                if (username == _user.DisplayName)
+                {
+                    scoreboardElement.GetComponent<Leaderboard>().NewScoreElement(username + " (you)", exp);
+                }
+                else
+                {
+                    scoreboardElement.GetComponent<Leaderboard>().NewScoreElement(username, exp);
+                }
+
             }
 
-            UIManager.instance.ShowLeaderboardScreen();
+            Addressables.InstantiateAsync("").Completed += handle => Completed(handle, new object());
+            
+            // UIManager.Instance.ShowLeaderboardScreen();
         }
     }
-    
+
+    private void Completed(AsyncOperationHandle<GameObject> obj, object haha)
+    {
+        // obj.Result.TryGetComponent()
+        throw new NotImplementedException();
+    }
+
     #endregion
 
     #region ClearFields & PasteEmailPassword

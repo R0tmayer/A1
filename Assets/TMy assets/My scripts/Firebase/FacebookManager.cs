@@ -95,7 +95,7 @@ public class FacebookManager : MonoBehaviour
             }
 
             FirebaseUser newUser = task.Result;
-            UnityMainThread.wkr.AddJob(UIManager.instance.ShowMainMenuScreen);
+            // UnityMainThread.wkr.AddJob(UIManager.Instance.ShowMainMenuScreen);
 
             Debug.LogFormat("User signed in successfully: {0} ({1})", newUser.DisplayName, newUser.UserId);
         });

@@ -1,4 +1,7 @@
+using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DemoSceneController : MonoBehaviour
@@ -15,15 +18,20 @@ public class DemoSceneController : MonoBehaviour
     [SerializeField] private Button _settingsButton;
     [SerializeField] private Button _tutorialButton;
     [SerializeField] private Button _skipTutorialButton;
+    [SerializeField] private Button _mainMenuButton;
     [SerializeField] private Button _quitButton;
 
     private GameObject _currentCanvas;
+    private UIManager _uiManager;
     private TutorialUI _tutorial;
+    private BlackScreenFade _blackScreenFade;
 
     private void Awake()
     {
         SetCurrentCanvas(_mainGameCanvas);
+        DontDestroyOnLoad(gameObject);
     }
+    
 
     private void OnEnable()
     {
@@ -33,6 +41,15 @@ public class DemoSceneController : MonoBehaviour
         _tutorialButton.onClick.AddListener(ShowGameGuide);
         _skipTutorialButton.onClick.AddListener(ContinueGame);
         _quitButton.onClick.AddListener(CloseApplication);
+        _mainMenuButton.onClick.AddListener(GoToMainMenu);
+    }
+
+    private void Start()
+    {
+        _uiManager = FindObjectOfType<UIManager>();
+        _blackScreenFade = FindObjectOfType<BlackScreenFade>();
+        
+        // _blackScreenFade.FadeOut();
     }
 
     private void Update()
@@ -48,6 +65,7 @@ public class DemoSceneController : MonoBehaviour
         _tutorialButton.onClick.RemoveListener(ShowGameGuide);
         _skipTutorialButton.onClick.RemoveListener(ContinueGame);
         _quitButton.onClick.RemoveListener(CloseApplication);
+        _mainMenuButton.onClick.RemoveListener(GoToMainMenu);
     }
 
     private void OpenPauseCanvas()
@@ -115,5 +133,20 @@ public class DemoSceneController : MonoBehaviour
 
         _currentCanvas = canvas;
         _currentCanvas.SetActive(true);
+    }
+
+    public void GoToMainMenu()
+    {
+        StartCoroutine(LoadSceneCoroutine(StaticSceneNames.MAIN_MENU_SCENE));
+    }
+    
+    private IEnumerator LoadSceneCoroutine(string sceneName)
+    {
+        Debug.Log("LoadSceneCoroutine");
+        // _blackScreenFade.FadeIn();
+        // yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(sceneName);
+
+        yield return null;
     }
 }

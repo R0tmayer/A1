@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,11 @@ public class AudioManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         InitializeSettings();
+    }
+
+    private void Start()
+    {
+        UIManager.Instance.ShowMenuScreen();
     }
 
     private void InitializeSettings()
