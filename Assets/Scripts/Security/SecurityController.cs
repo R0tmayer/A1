@@ -37,7 +37,9 @@ public class SecurityController : MonoBehaviour
     public PlayerCar.PathMover pathMover;
     public PlayerCar.PlayerCarSelector _playerCarSelector;
 
-    public int timeToArest = 4;
+
+    public float timeToArest = 4;
+    public float timeToArestUP = 0;
     public bool bestRoad;
     public bool autoPilot;
 
@@ -148,6 +150,7 @@ public class SecurityController : MonoBehaviour
 
     void Start()
     {
+
         objectColor = meshRenderers[0].GetComponent<Renderer>().material.color;
         stateMachine = new StateMachineSecurity();
 
@@ -170,15 +173,17 @@ public class SecurityController : MonoBehaviour
 
     public void SpeedUp()
     {
-        pathMover._speed++;
+        pathMover._speed += Metric.Instance.isOnMetric ? Metric.Instance.speedAfterUpdate.GetComponent<MetricaVal>().value : 1;
        // Debug.Log("Скорость увеличена до " + pathMover._speed);
         
     }  
     
     public void ArestSpeed()
     {
-        timeToArest--;
-       // Debug.Log("Время ареста уменьшено до " + timeToArest);
+        //timeToArest -= Metric.Instance.isOnMetric ? Metric.Instance.valuePowerSecurity.GetComponent<MetricaVal>().value : 1; ;
+        timeToArestUP = Metric.Instance.isOnMetric ? Metric.Instance.valuePowerSecurity.GetComponent<MetricaVal>().value : 1; ;
+
+        // Debug.Log("Время ареста уменьшено до " + timeToArest);
     } 
     
     public void BestRoad()
@@ -232,6 +237,12 @@ public class SecurityController : MonoBehaviour
 
     void Update()
     {
+        if (Metric.Instance.isOnMetric)
+        {
+            timeToArest = (int)Metric.Instance.timeProtect.GetComponent<MetricaVal>().value - timeToArestUP;
+        }
+        
+
         stateMachine.CurrentState.HandleInput();
         stateMachine.CurrentState.LogicUpdate();
 

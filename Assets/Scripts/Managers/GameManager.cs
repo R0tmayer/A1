@@ -8,7 +8,8 @@ public class GameManager : SceneSingleton<GameManager>
 
     [Header("Setting")]
     //public int carsCount;
-
+    public int maxCarsRob = 5;
+    
     [SerializeField] private float _spawnInterval;
     [SerializeField] private Factory Factory;
     public int currentCarsCount;
@@ -16,6 +17,16 @@ public class GameManager : SceneSingleton<GameManager>
 
     [SerializeField] private GameObject[] _interfaceElements;
 
+    private void Update()
+    {
+        if (Metric.Instance.isOnMetric)
+        {
+            _spawnInterval =  Metric.Instance.spawnRobTIme.GetComponent<MetricaVal>().value ;
+            maxCarsRob = (int)Metric.Instance.maxRobAtTime.GetComponent<MetricaVal>().value;
+
+        }
+
+    }
 
     public void StartGame()
     {
@@ -31,7 +42,7 @@ public class GameManager : SceneSingleton<GameManager>
     {
         while (true)
         {
-            if (TargetsManager.Instance.robberTargetPositions.Count > 0)
+            if (TargetsManager.Instance.robberTargetPositions.Count > 0 || TargetsManager.Instance.robberTargetPositions.Count <= maxCarsRob)
             {
                 Factory.SpawnRubbers();
             }

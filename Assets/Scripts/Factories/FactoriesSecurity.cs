@@ -107,6 +107,11 @@ public class FactoriesSecurity : MonoBehaviour
             maxCount++;
         }
 
+        StartCoroutine(DelySpawn());
+    }
+
+    IEnumerator DelySpawn() {
+        yield return new WaitForSeconds(1);
         SpawnSecurityCar();
         StartCoroutine(CarSpawner());
 
@@ -145,7 +150,7 @@ public class FactoriesSecurity : MonoBehaviour
     }
 
     private bool UpgradeMoreCar() {
-        int price = 1000;
+        int price = (int)(Metric.Instance.isOnMetric ? Metric.Instance.priceUpdateSecurity.GetComponent<MetricaVal>().value : 1000) ;
         string name = "Больше машин" ;
 
         bool result = Upgrader(price, name);
@@ -158,7 +163,7 @@ public class FactoriesSecurity : MonoBehaviour
     }    
     
     private bool UpgradeTeach() {
-        int price = 1000;
+        int price = (int)(Metric.Instance.isOnMetric ? Metric.Instance.priceUpdateSecurity.GetComponent<MetricaVal>().value : 1000);
         string name = "Обучение сотрудников" ;
 
         bool result = Upgrader(price, name);
@@ -167,7 +172,7 @@ public class FactoriesSecurity : MonoBehaviour
     }   
     
     private bool UpgradePower() {
-        int price = 1000;
+        int price = (int)(Metric.Instance.isOnMetric ? Metric.Instance.priceUpdateSecurity.GetComponent<MetricaVal>().value : 1000);
         string name = "Сила сотрудников" ;
 
         bool result = Upgrader(price, name);
@@ -176,7 +181,7 @@ public class FactoriesSecurity : MonoBehaviour
     }  
     
     private bool UpgradeTablet() {
-        int price = 1000;
+        int price = (int)(Metric.Instance.isOnMetric ? Metric.Instance.priceUpdateSecurity.GetComponent<MetricaVal>().value : 1000);
         string name = "Планшет" ;
 
         bool result = Upgrader(price, name);
@@ -185,7 +190,7 @@ public class FactoriesSecurity : MonoBehaviour
     }    
     
     private bool UpgradeRadio() {
-        int price = 1000;
+        int price = (int)(Metric.Instance.isOnMetric ? Metric.Instance.priceUpdateSecurity.GetComponent<MetricaVal>().value : 1000);
         string name = "Рация" ;
 
         bool result = Upgrader(price, name);
@@ -194,7 +199,7 @@ public class FactoriesSecurity : MonoBehaviour
     }    
     
     private bool UpgradeFleshers() {
-        int price = 1000;
+        int price = (int)(Metric.Instance.isOnMetric ? Metric.Instance.priceUpdateSecurity.GetComponent<MetricaVal>().value : 1000);
         string name = "Мигалки" ;
 
         bool result = Upgrader(price, name);

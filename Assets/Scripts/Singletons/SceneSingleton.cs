@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BGGames.Core
@@ -20,5 +18,18 @@ namespace BGGames.Core
             else
                 Destroy(gameObject);
         }
+
+
+        public virtual void Update()
+        {
+
+        }
+
+        public virtual void Start()
+        {
+
+        }
     }
+
+
 }

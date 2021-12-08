@@ -39,9 +39,14 @@ public class MovingState : State
         character.roberryPathFinder.movePositionHouse.StartRobbery();
         character.roberryPathFinder.movePositionHouse.going_to_rob = true;
 
-        val = Mathf.Round(character.roberryPathFinder.movePositionHouse.upg_zabor_or_signalization ?
+/*        val = Mathf.Round(character.roberryPathFinder.movePositionHouse.upg_zabor_or_signalization ?
             character.factorPropertyperSecodn / 1.5f :
             character.factorPropertyperSecodn);
+*/
+        val = Mathf.Round(character.roberryPathFinder.movePositionHouse.upg_zabor_or_signalization ?
+    character.factorPropertyperSecodn / (Metric.Instance.isOnMetric ? Metric.Instance.signalizationValue.GetComponent<MetricaVal>().value : 1.5f) :
+    character.factorPropertyperSecodn);
+
 
         time = Mathf.Round(character.roberryPathFinder.movePositionHouse.Property / val);
 

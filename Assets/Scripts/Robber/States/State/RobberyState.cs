@@ -26,8 +26,12 @@ public class RobberyState : State
         while (character.roberryPathFinder.movePositionHouse.Property > 0)
         {
 
-            float val = Mathf.Round(character.roberryPathFinder.movePositionHouse.upg_zabor_or_signalization ?
+/*            float val = Mathf.Round(character.roberryPathFinder.movePositionHouse.upg_zabor_or_signalization ?
                 character.factorPropertyperSecodn / 1.5f :
+                character.factorPropertyperSecodn);     */       
+            
+            float val = Mathf.Round(character.roberryPathFinder.movePositionHouse.upg_zabor_or_signalization ?
+                character.factorPropertyperSecodn / (Metric.Instance.isOnMetric ? Metric.Instance.signalizationValue.GetComponent<MetricaVal>().value : 1.5f) :
                 character.factorPropertyperSecodn);
 
             float time = Mathf.Round(character.roberryPathFinder.movePositionHouse.Property / val);

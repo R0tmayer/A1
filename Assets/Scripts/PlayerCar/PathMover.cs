@@ -34,7 +34,7 @@ namespace PlayerCar
 
         private void Start()
         {
-            _navMeshAgent.speed = _speed;
+            _navMeshAgent.speed = Metric.Instance.isOnMetric ? Metric.Instance.policeCarSpeed.GetComponent<MetricaVal>().value : _speed;
         }
         private void Update() =>
            MovingThoughPath();

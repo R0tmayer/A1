@@ -20,6 +20,8 @@ public class RoberryPathFinder : MonoBehaviour
         _robberController = GetComponent<RobberController>();
     }
 
+
+
     public void Move() {
         _navMeshAgent.destination = movePositionHouse.transformForPathFinder.position;
         var dist1 = Vector3.Distance(movePositionHouse.transformForPathFinder.position, transform.position);

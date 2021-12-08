@@ -10016,6 +10016,7 @@ MonoBehaviour:
   timeToArest: 4
   bestRoad: 0
   autoPilot: 0
+  isStoped: 0
   _radio: {fileID: 1521166449655426105}
   _radioLineRenderer: {fileID: 5727280194052970512}
   _navMeshAgentRadio: {fileID: 8487414150471528236}

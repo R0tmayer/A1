@@ -87,6 +87,12 @@ public class RobberController : MonoBehaviour
 
     void Start()
     {
+        if (Metric.Instance.isOnMetric)
+        {
+           navMeshAgent.speed = Metric.Instance.rob1CarSpeed.GetComponent<MetricaVal>().value;
+        }
+      
+
         stateMachine = new StateMachine();
 
         idle = new IdleRobberyState(this, stateMachine);

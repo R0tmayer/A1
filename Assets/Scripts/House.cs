@@ -51,7 +51,7 @@ public class House : MonoBehaviour
     [SerializeField] public bool going_to_rob; //Едут на ограбление
     [SerializeField] public bool rob; // Начали грабить
     [SerializeField] public bool securityProtected; // Под защитой
-    private float _property = 100; // Текущее значение имущества
+    private float _property; // Текущее значение имущества
     [SerializeField] private float _maxProperty = 100; // Максимально количество имузества (для сброса по умолчанию, его так же можно увеличивать)
 
     public event Action OnCompleteRobbir; // Если ограбление заканчивается
@@ -66,9 +66,12 @@ public class House : MonoBehaviour
         marker.GetComponent<UITimer>().child.HideImage(false);
     }
 
+
+
     public void Awake()
     {
-        
+        _property = _maxProperty;
+
         _targetPoint = pack._targetPoint;
         marker = pack.marker;
         signalParticle = pack.signalParticle;
@@ -105,6 +108,15 @@ public class House : MonoBehaviour
     }*/
 
     private void Update() {
+        if (Metric.Instance.isOnMetric)
+        {
+            if (_maxProperty != Metric.Instance.timeRob.GetComponent<MetricaVal>().value)
+            {
+                _maxProperty = Metric.Instance.timeRob.GetComponent<MetricaVal>().value;
+                _property = _maxProperty;
+            }
+           
+        }
         if (!_checkUpdate)
         {
             _checkUpdate = true;
@@ -195,7 +207,7 @@ public class House : MonoBehaviour
     }
 
     private bool UpgradeTime() {
-        int price = 50;
+        int price = (int)(Metric.Instance.isOnMetric ? Metric.Instance.priceUpdateSignal.GetComponent<MetricaVal>().value : 50);
 
         if (MainPlayer.Instance.Money - price >= 0)
         {
@@ -241,7 +253,7 @@ public class House : MonoBehaviour
 
 
     private bool UpgradeCamera() {
-        int price = 100;
+        int price = (int)(Metric.Instance.isOnMetric ? Metric.Instance.priceUpdateCamera.GetComponent<MetricaVal>().value : 100);
 
         if (MainPlayer.Instance.Money - price >= 0)
         {
@@ -329,9 +341,11 @@ public class House : MonoBehaviour
         //Тут считаем очки, прибавляем или отнимаем и сколько
         //Debug.Log("Ограбление предотвращено");
         /* MainPlayer.Instance.HouseState = "Ограбление предотвращено =)";*/
-        MainPlayer.Instance.Raiting = 50;
+        MainPlayer.Instance.Raiting = Metric.Instance.isOnMetric ? Metric.Instance.expAfterProtect.GetComponent<MetricaVal>().value : 50; ;
+
+
         AddScoreToBase();
-        MainPlayer.Instance.Money = 50;
+        MainPlayer.Instance.Money = Metric.Instance.isOnMetric ? Metric.Instance.moneyAfterProtect.GetComponent<MetricaVal>().value : 50; ;
         TargetsManager.Instance.countUpdate++;
         if (TargetsManager.Instance.countUpdate >= 20)
         {
@@ -346,9 +360,14 @@ public class House : MonoBehaviour
         audioSource.PlayOneShot(failAudio);
         ViewHousStatusParticle(failParticle);
         EndRobbery();
-  /*      MainPlayer.Instance.HouseState = "ОГРАБИЛИ =(";*/
-        MainPlayer.Instance.Raiting = upg_camera ? -25 : -50;
-        MainPlayer.Instance.Money = upg_camera ? -25 : -50;
+        /*      MainPlayer.Instance.HouseState = "ОГРАБИЛИ =(";*/
+
+        float c = (Metric.Instance.isOnMetric ? -Metric.Instance.expBeforRob.GetComponent<MetricaVal>().value : -50) / (Metric.Instance.isOnMetric ? Metric.Instance.cameraValue.GetComponent<MetricaVal>().value : 2);
+        float v = (Metric.Instance.isOnMetric ? -Metric.Instance.moneyAfterRob.GetComponent<MetricaVal>().value : -50) / (Metric.Instance.isOnMetric ? Metric.Instance.cameraValue.GetComponent<MetricaVal>().value : 2);
+
+        MainPlayer.Instance.Raiting = upg_camera ? c : Metric.Instance.isOnMetric ? -Metric.Instance.expBeforRob.GetComponent<MetricaVal>().value : -50; 
+        MainPlayer.Instance.Money = upg_camera ? v : Metric.Instance.isOnMetric ? -Metric.Instance.moneyAfterRob.GetComponent<MetricaVal>().value : -50;
+        
         TargetsManager.Instance.countUpdate = 0;
         SaveLoadController.SaveOut();
         //Тут считаем очки, прибавляем или отнимаем и сколько
