@@ -115,7 +115,7 @@ public class HomeUpdater : MonoBehaviour
         {
             yield return new WaitForSeconds(30);
             House house = TargetsManager.Instance.houses[Random.Range(0, TargetsManager.Instance.houses.Count - 1)];
-            if (house.upg_zabor_or_signalization && !house.going_to_rob && !house.rob && !house.securityProtected && !house._isAHouse)
+            if (house.upg_zabor_or_signalization && !house.going_to_rob && !house.rob && !house.securityProtected && !house._isAHouse && !house.upg_camera)
             {
                 MainPlayer.Instance.ShowMessage("Сработала ложная сигнализация");
                 house.rob = true;
@@ -151,7 +151,7 @@ public class HomeUpdater : MonoBehaviour
         _currentHouse.OutlineOn();
         _houseInfo.SetActive(true);
         SetDataToUi();
-        Time.timeScale = 0;
+
     }
 
     private void CloseUI()
@@ -187,7 +187,7 @@ public class HomeUpdater : MonoBehaviour
         _updateButton_Camera.GetComponent<ButtonSize>().enabled = true;
         _updateButton_Camera.GetComponent<EventTrigger>().enabled = true;
 
-        Time.timeScale = 1;
+  
 
     }
 

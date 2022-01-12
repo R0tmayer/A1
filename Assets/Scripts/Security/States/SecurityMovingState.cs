@@ -33,7 +33,9 @@ public class SecurityMovingState : StateSecurity
 
         if (character.GetDistanceToTarget()) {
             character.pathMover.StopMove();
-            stateMachine.ChangeState(character.waiting);
+            character.tartgetHouse._house.moveProtected = false;
+            //stateMachine.ChangeState(character.waiting);
+            stateMachine.ChangeState(character.detaining);
         }
 
   

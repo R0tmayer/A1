@@ -23,8 +23,7 @@ public class SecurityController : MonoBehaviour
 
 
     public GameObject messageMark;
-
-    
+   
 
     public GameObject siren;
     public GameObject fieldPathDraw;

@@ -15,7 +15,7 @@ namespace PlayerCar
 
         private static int _simplifierPath = 2;
 
-        private NavMeshAgent _navMeshAgent;
+        public NavMeshAgent _navMeshAgent;
         public Queue<Vector3> _pathPoints = new Queue<Vector3>();
         private bool _isPathCreated;
 
@@ -65,6 +65,10 @@ namespace PlayerCar
 
         public void StopMove() {
             _navMeshAgent.isStopped = true;
+        }
+        
+        public void StartMove() {
+            _navMeshAgent.isStopped = false;
         }
 
 

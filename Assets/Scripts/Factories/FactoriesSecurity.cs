@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class FactoriesSecurity : MonoBehaviour
 {
     [SerializeField] GameObject _car;
-    [SerializeField] Transform _spawnPoint;
+    [SerializeField] public Transform _spawnPoint;
 
     public int carsCount;
     public int maxCount;

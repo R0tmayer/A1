@@ -51,6 +51,7 @@ public class House : MonoBehaviour
     [SerializeField] public bool going_to_rob; //Едут на ограбление
     [SerializeField] public bool rob; // Начали грабить
     [SerializeField] public bool securityProtected; // Под защитой
+    [SerializeField] public bool moveProtected = true; // Под защитой
     private float _property; // Текущее значение имущества
     [SerializeField] private float _maxProperty = 100; // Максимально количество имузества (для сброса по умолчанию, его так же можно увеличивать)
 

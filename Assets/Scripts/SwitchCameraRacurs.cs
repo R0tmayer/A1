@@ -12,6 +12,7 @@ public class SwitchCameraRacurs : MonoBehaviour
 
     private float _elapsedTime;
     [SerializeField] private bool _isSwitch;
+    [SerializeField] private bool _isFirstCLock;
 
     [SerializeField]  private float SwichSpeed = 2;
 
@@ -33,6 +34,8 @@ public class SwitchCameraRacurs : MonoBehaviour
         TargetsManager.Instance.isBuildMode = true;
         _isSwitch = true;
         _elapsedTime = 0;
+        Time.timeScale = 1;
+        Debug.Log("Возобновляем в build mode");
     }
 
 
@@ -41,6 +44,7 @@ public class SwitchCameraRacurs : MonoBehaviour
         ButtonViewMode?.SetActive(false);
         TargetsManager.Instance.isBuildMode = false;
         _isSwitch = true;
+        _isFirstCLock = true;
         _elapsedTime = 0;
     }
 
@@ -75,6 +79,11 @@ public class SwitchCameraRacurs : MonoBehaviour
             if (_camera.transform.localRotation == _viewRacurs)
             {
                 _isSwitch = false;
+                if (_isFirstCLock)
+                {
+                    Time.timeScale = 0;
+                }
+                Debug.Log("Останавливаем в build mode");
                 return;
             }
 

@@ -155,7 +155,7 @@ public class SecurityUpdater : MonoBehaviour
         _houseInfo.SetActive(true);
         SetDataToUi();
 
-        Time.timeScale = 0;
+
     }
 
     private void CloseUI()
@@ -199,7 +199,7 @@ public class SecurityUpdater : MonoBehaviour
         _updateButton_Flesher.GetComponent<ButtonSize>().enabled = true;
         _updateButton_Flesher.GetComponent<EventTrigger>().enabled = true;
 
-        Time.timeScale = 1;
+
     }
 
 

@@ -22,29 +22,46 @@ public class RobberyState : State
 
 
     IEnumerator Wringer() {
-
+        float val = 0;
+        float time = 0;
         while (character.roberryPathFinder.movePositionHouse.Property > 0)
         {
 
-/*            float val = Mathf.Round(character.roberryPathFinder.movePositionHouse.upg_zabor_or_signalization ?
-                character.factorPropertyperSecodn / 1.5f :
-                character.factorPropertyperSecodn);     */       
-            
-            float val = Mathf.Round(character.roberryPathFinder.movePositionHouse.upg_zabor_or_signalization ?
+
+            //if (!character.roberryPathFinder.movePositionHouse.securityProtected) { 
+ 
+                /*            float val = Mathf.Round(character.roberryPathFinder.movePositionHouse.upg_zabor_or_signalization ?
+                                character.factorPropertyperSecodn / 1.5f :
+                                character.factorPropertyperSecodn);     */
+
+
+                    
+            val = Mathf.Round(character.roberryPathFinder.movePositionHouse.upg_zabor_or_signalization ?
                 character.factorPropertyperSecodn / (Metric.Instance.isOnMetric ? Metric.Instance.signalizationValue.GetComponent<MetricaVal>().value : 1.5f) :
                 character.factorPropertyperSecodn);
 
-            float time = Mathf.Round(character.roberryPathFinder.movePositionHouse.Property / val);
+            time = Mathf.Round(character.roberryPathFinder.movePositionHouse.Property / val);
 
             character.roberryPathFinder.movePositionHouse.marker.GetComponent<UITimer>().SetNewTime(""+ time, true);
             character.roberryPathFinder.movePositionHouse.marker.GetComponent<UITimer>().SetText(""+  Mathf.Round(100 - (100 * character.roberryPathFinder.movePositionHouse.Property) / startVal) + " %", false);
             yield return new WaitForSeconds(1);
-            if (character.roberryPathFinder.movePositionHouse.Property - val <= 0)
+
+            if (character.roberryPathFinder.movePositionHouse.moveProtected)
             {
-                character.StopCoroutineTMP();
+                if (character.roberryPathFinder.movePositionHouse.Property - val <= 0)
+                {
+                    character.StopCoroutineTMP();
+                }
+
+                character.roberryPathFinder.movePositionHouse.Property = val;
+            }
+            else {
+
+                character.roberryPathFinder.movePositionHouse.marker.GetComponent<UITimer>().SetBGText(false);
+                character.roberryPathFinder.movePositionHouse.marker.GetComponent<UITimer>().SetBG(false);
             }
 
-            character.roberryPathFinder.movePositionHouse.Property = val; 
+            
         }
     }
 
