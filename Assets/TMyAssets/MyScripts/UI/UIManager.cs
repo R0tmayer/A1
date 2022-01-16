@@ -76,7 +76,7 @@ public class UIManager : MonoBehaviour
 
     public void OpenHyperlink()
     {
-        Application.OpenURL("http://unity3d.com/");
+        Application.OpenURL("https://www.a1.by/");
     }
 
     public void ShowLoginScreen()
